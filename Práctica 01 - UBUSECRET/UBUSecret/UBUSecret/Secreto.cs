@@ -11,43 +11,39 @@ namespace UBUSecret
         */
 
         int idSecreto;
-        string remitente;
+        Usuario remitente;
         string emailRemitente;
-        string receptor;
+        string alias;
         string mensaje;
+        string titulo;
+        LinkedList<Usuario> receptores;
         private static int IDSEQ = 0;
 
 
 
-        private Secreto(string remitente, string emailRemitente, string receptor, string mensaje)
+        public Secreto(Usuario remitente, string emailRemitente, LinkedList<Usuario> receptores, string mensaje, string titulo, string alias)
         {
             this.idSecreto  =  IDSEQ++;
             this.emailRemitente = emailRemitente;
-            this.receptor  =  receptor;
             this.mensaje = mensaje;
+            this.remitente = remitente;
+            this.Receptores = receptores;
+            this.Alias = alias;
+            this.Titulo = titulo;
+
         }
 
         public int IdSecreto { get => idSecreto; set => idSecreto = value; }
-        public string Remitente { get => remitente; set => remitente = value; }
-        public string Receptor { get => receptor; set => receptor = value; }
+        public Usuario Remitente { get => remitente; set => remitente = value; }
         public string Mensaje { get => mensaje; set => mensaje = value; }
         public string EmailRemitente { get => emailRemitente; set => emailRemitente = value; }
+        public LinkedList<Usuario> Receptores { get => receptores; set => receptores = value; }
+        public string Titulo { get => titulo; set => titulo = value; }
+        public string Alias { get => alias; set => alias = value; }
 
-        public List<Secreto> EnviarSecreto(string remitente, string emailRemitente, List<string> receptores, string mensaje)
-        {
-            List<Secreto> secretos = new List<Secreto>();
+        public Boolean TieneAcceso(Usuario usuario) {
+            return receptores.Find(usuario) != null;
 
-
-            foreach (string receptor in receptores)
-            {
-                secretos.Add(new Secreto(remitente, emailRemitente, receptor, mensaje));
-            }
-
-            return secretos;
         }
-
-        
-
-
     }
 }
