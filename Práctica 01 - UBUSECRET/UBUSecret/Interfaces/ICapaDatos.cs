@@ -6,7 +6,7 @@ namespace Interfaces
 {
     public interface ICapaDatos
     {
-        public Usuario LeerUsuario(Usuario usuario);
+        public Usuario LeerUsuario(int id);
         public Usuario LeerUsuario(string email);
 
         public Usuario BorrarUsuario(string email);
