@@ -15,11 +15,12 @@ namespace Interfaces
 
         public List<Usuario> LeerUsuariosDeshabilitados();
 
-        public Secreto BorrarSecreto(string idSecreto);
+        public Secreto BorrarSecreto(int idSecreto);
         public bool InsertarSecreto(Secreto secreto);
 
         public List<Secreto> LeerSecretosRecibidos(Usuario usuario);
         public List<Secreto> LeerSecretosEnviados(Usuario usuario);
-            
+
+        public void Reset();
     }
 }

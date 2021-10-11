@@ -89,6 +89,38 @@ namespace UBUSecret
             return true;
         }
 
-        
+        public override bool Equals(object obj)
+        {
+            return obj is Usuario usuario &&
+                   id == usuario.id &&
+                   nombre == usuario.nombre &&
+                   apellidos == usuario.apellidos &&
+                   email == usuario.email &&
+                   rol == usuario.rol &&
+                   telefono == usuario.telefono &&
+                   passwordHash == usuario.passwordHash &&
+                   previousPasswordHash == usuario.previousPasswordHash &&
+                   salt == usuario.salt;
+        }
+
+        public override int GetHashCode()
+        {
+            HashCode hash = new HashCode();
+            hash.Add(id);
+            hash.Add(nombre);
+            hash.Add(apellidos);
+            hash.Add(email);
+            hash.Add(rol);
+            hash.Add(telefono);
+            hash.Add(passwordHash);
+            hash.Add(previousPasswordHash);
+            hash.Add(salt);
+            return hash.ToHashCode();
+        }
+
+        public override string ToString()
+        {
+            return String.Format("Id: {0}, Nombre: {1}, app: {2}, email: {3}, rol:{4}, tfno: {5}", this.id, this.nombre, this.apellidos, this.email, this.rol, this.telefono);
+        }
     }
 }
