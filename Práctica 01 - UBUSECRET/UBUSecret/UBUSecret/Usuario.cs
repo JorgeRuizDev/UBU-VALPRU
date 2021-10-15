@@ -77,9 +77,19 @@ namespace UBUSecret
             return this.passwordHash.Equals(Crypt.Encriptar(password, this.salt));
         }
 
-        public bool CambiarPassword(string password)
+        public bool CambiarPassword(string prev1, string prev2, string password)
         {
+            if (prev1 == null || !prev1.Equals(prev2))
+            {
+                return false;
+            }
+
             if (password == null || password.Length == 0)
+            {
+                return false;
+            }
+
+            if (previousPasswordHash != Util.Crypt.Encriptar(prev1, salt.ToString()))
             {
                 return false;
             }
