@@ -6,21 +6,21 @@ namespace Interfaces
 {
     public interface ICapaDatos
     {
-        public Usuario LeerUsuario(int id);
-        public Usuario LeerUsuario(string email);
+        Usuario LeerUsuario(int id);
+        Usuario LeerUsuario(string email);
 
-        public Usuario BorrarUsuario(string email);
+        Usuario BorrarUsuario(string email);
 
-        public bool InsertarUsuario(Usuario usuario);
+        bool InsertarUsuario(Usuario usuario);
 
-        public List<Usuario> LeerUsuariosDeshabilitados();
+        List<Usuario> LeerUsuariosDeshabilitados();
 
-        public Secreto BorrarSecreto(int idSecreto);
-        public bool InsertarSecreto(Secreto secreto);
+        Secreto BorrarSecreto(int idSecreto);
+        bool InsertarSecreto(Secreto secreto);
 
-        public List<Secreto> LeerSecretosRecibidos(Usuario usuario);
-        public List<Secreto> LeerSecretosEnviados(Usuario usuario);
+        List<Secreto> LeerSecretosRecibidos(Usuario usuario);
+        List<Secreto> LeerSecretosEnviados(Usuario usuario);
 
-        public void Reset();
+        void Reset();
     }
 }
