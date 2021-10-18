@@ -69,6 +69,7 @@
   <ItemGroup>
     <Content Include="Web.config" />
     <Content Include="default.aspx" />
+    <Content Include="cambiarPassword.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,6 +86,13 @@
     </Compile>
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="cambiarPassword.aspx.cs">
+      <DependentUpon>cambiarPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="cambiarPassword.aspx.designer.cs">
+      <DependentUpon>cambiarPassword.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
