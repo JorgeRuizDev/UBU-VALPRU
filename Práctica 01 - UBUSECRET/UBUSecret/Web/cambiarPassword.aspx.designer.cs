@@ -60,6 +60,51 @@ namespace Web
         protected global::System.Web.UI.WebControls.Label ErrMail;
 
         /// <summary>
+        /// LblOld1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblOld1;
+
+        /// <summary>
+        /// BoxOld1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox BoxOld1;
+
+        /// <summary>
+        /// LblOld2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblOld2;
+
+        /// <summary>
+        /// BoxOld2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox BoxOld2;
+
+        /// <summary>
+        /// ErrOld control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrOld;
+
+        /// <summary>
         /// LblPassw control.
         /// </summary>
         /// <remarks>
@@ -87,21 +132,21 @@ namespace Web
         protected global::System.Web.UI.WebControls.Label ErrPassw;
 
         /// <summary>
-        /// HyperLink1 control.
+        /// Cancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+        protected global::System.Web.UI.WebControls.Button Cancel;
 
         /// <summary>
-        /// Button1 control.
+        /// Send control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button Send;
     }
 }

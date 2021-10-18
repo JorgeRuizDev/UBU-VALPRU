@@ -9,9 +9,9 @@
     </section>
 
 
-    <div class="flex flex-col items-center justify-center w-screen " style="height: 60vh">
+    <div class="flex flex-col items-center justify-center ">
 
-        <div class="flex flex-col items-center space-y-3 p-4 shadow-lg" style="width: 400px">
+        <div class="flex flex-col items-center space-y-3 p-4 shadow-lg" style="width: 600px">
 
             <section class="flex flex-row justify-around">
                 <h3>
@@ -31,27 +31,40 @@
 
             </section>
 
-
-
+            <hr />
 
             <section class="w-full flex flex-col justify-start">
                 <label class="form-label">
-                    <asp:Label ID="LblPassw" runat="server" Text="Contraseña Antigua"></asp:Label></label>
+                    <asp:Label ID="LblOld1" runat="server" Text="Contraseña Actual"></asp:Label></label>
+                <asp:TextBox ID="BoxOld1" runat="server" type="password" class="form-control"></asp:TextBox>
+
+            </section>
+
+            <section class="w-full flex flex-col justify-start">
+                <label class="form-label">
+                    <asp:Label ID="LblOld2" runat="server" Text="Repita La Contraseña Actual"></asp:Label></label>
+                <asp:TextBox ID="BoxOld2" runat="server" type="password" class="form-control"></asp:TextBox>
+                <div class="text-danger">
+                    <asp:Label ID="ErrOld" runat="server" Text="Las Contraseñas No Coinciden"></asp:Label>
+                </div>
+            </section>
+            
+            <hr class="w-full rouned h-2"/>
+
+            <section class="w-full flex flex-col justify-start">
+                <label class="form-label">
+                    <asp:Label ID="LblPassw" runat="server" Text="Nueva Contraseña"></asp:Label></label>
                 <asp:TextBox ID="BoxPassw" runat="server" type="password" class="form-control"></asp:TextBox>
                 <div class="text-danger">
-                    <asp:Label ID="ErrPassw" runat="server" Text="Contraseña Mal"></asp:Label>
+                    <asp:Label ID="ErrPassw" runat="server" Text="Campo Vacío"></asp:Label>
                 </div>
             </section>
 
 
-            <section class="w-full flex flex-col justify-start">
-                <asp:HyperLink ID="HyperLink1" runat="server" class="link-primary" href="#">Cambiar la contraseña</asp:HyperLink>
-            </section>
 
-
-
-            <section class="flex justify-end w-full">
-                <asp:Button ID="Button1" runat="server" Text="Iniciar Sesión" class="btn btn-success" />
+            <section class="flex justify-end flex-row w-full space-x-4">
+                <asp:Button ID="Cancel" runat="server" Text="Cancelar" class="btn btn-danger"     />
+                <asp:Button ID="Send" runat="server" Text="Cambiar" class="btn btn-success" />
             </section>
         </div>
 </asp:Content>
