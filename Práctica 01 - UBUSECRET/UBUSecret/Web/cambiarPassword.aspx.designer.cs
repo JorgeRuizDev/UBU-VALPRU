@@ -132,21 +132,21 @@ namespace Web
         protected global::System.Web.UI.WebControls.Label ErrPassw;
 
         /// <summary>
-        /// Cancel control.
+        /// BtnCancel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Cancel;
+        protected global::System.Web.UI.WebControls.Button BtnCancel;
 
         /// <summary>
-        /// Send control.
+        /// BtnSend control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Send;
+        protected global::System.Web.UI.WebControls.Button BtnSend;
     }
 }

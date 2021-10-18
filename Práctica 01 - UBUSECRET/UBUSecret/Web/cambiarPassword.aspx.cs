@@ -11,9 +11,12 @@ namespace Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            this.ErrMail.Text = "HOLA";
         }
 
-
+        protected void BtnCancel_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("default.aspx", true);
+        }
     }
 }

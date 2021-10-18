@@ -1,6 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="cambiarPassword.aspx.cs" Inherits="Web.WebForm2" %>
+﻿<%@ Page Title="Cambiar Contraseña" Language="C#" MasterPageFile="~/Site1.Master" AutoEventWireup="true" CodeBehind="cambiarPassword.aspx.cs" Inherits="Web.WebForm2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <section class="flex flex-row justify-around">
@@ -31,7 +32,8 @@
 
             </section>
 
-            <hr />
+            <hr class="w-full rouned h-2"/>
+            
 
             <section class="w-full flex flex-col justify-start">
                 <label class="form-label">
@@ -63,8 +65,9 @@
 
 
             <section class="flex justify-end flex-row w-full space-x-4">
-                <asp:Button ID="Cancel" runat="server" Text="Cancelar" class="btn btn-danger"     />
-                <asp:Button ID="Send" runat="server" Text="Cambiar" class="btn btn-success" />
+
+                <asp:Button ID="BtnCancel" runat="server" Text="Cancelar" class="btn btn-danger" onserverclick="BtnCancel_Click"    />
+                <asp:Button ID="BtnSend" runat="server" Text="Cambiar" class="btn btn-success" />
             </section>
         </div>
 </asp:Content>
