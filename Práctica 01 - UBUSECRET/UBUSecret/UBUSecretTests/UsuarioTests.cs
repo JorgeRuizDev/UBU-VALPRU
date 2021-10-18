@@ -40,7 +40,7 @@ namespace UBUSecret.Tests
             Assert.IsFalse(usuario.EsValido());
 
             usuario.Rol = Rol.Usuario;
-            Assert.IsTrue(usuario.CambiarPassword("1234", "1234", "contrasenia123"));
+            Assert.IsTrue(usuario.CambiarPassword("1234", "contrasenia123", "contrasenia123"));
 
             Assert.IsTrue(usuario.EsValido());
 
@@ -99,17 +99,20 @@ namespace UBUSecret.Tests
         public void CambiarPasswordTest()
         {
            
-            Assert.IsFalse(usuario.CambiarPassword("", "", "hola"));
+            Assert.IsFalse(usuario.CambiarPassword("", "hola", "hola"));
 
             Assert.IsTrue(usuario.ComprobarPassword("1234"));
 
-            Assert.IsFalse(usuario.CambiarPassword("1234", "1234", null));
+            Assert.IsFalse(usuario.CambiarPassword("1234", null, null));
+            Assert.IsTrue(usuario.ComprobarPassword("1234"));
+
+            Assert.IsFalse(usuario.CambiarPassword("1234", "hola", "adios"));
             Assert.IsTrue(usuario.ComprobarPassword("1234"));
 
             Assert.IsFalse(usuario.CambiarPassword(null, null, null));
             Assert.IsTrue(usuario.ComprobarPassword("1234"));
 
-            Assert.IsTrue(usuario.CambiarPassword("1234", "1234", "hola"));
+            Assert.IsTrue(usuario.CambiarPassword("1234", "hola", "hola"));
             Assert.IsTrue(usuario.ComprobarPassword("hola"));
 
         }
