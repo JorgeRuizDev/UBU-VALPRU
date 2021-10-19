@@ -60,49 +60,22 @@ namespace Web
         protected global::System.Web.UI.WebControls.Label ErrMail;
 
         /// <summary>
-        /// LblOld1 control.
+        /// LblOld control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblOld1;
+        protected global::System.Web.UI.WebControls.Label LblOld;
 
         /// <summary>
-        /// BoxOld1 control.
+        /// BoxOld control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox BoxOld1;
-
-        /// <summary>
-        /// LblOld2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblOld2;
-
-        /// <summary>
-        /// BoxOld2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox BoxOld2;
-
-        /// <summary>
-        /// ErrOld control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ErrOld;
+        protected global::System.Web.UI.WebControls.TextBox BoxOld;
 
         /// <summary>
         /// LblPassw control.
@@ -123,6 +96,33 @@ namespace Web
         protected global::System.Web.UI.WebControls.TextBox BoxPassw;
 
         /// <summary>
+        /// LblPassw2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LblPassw2;
+
+        /// <summary>
+        /// BoxPassw2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox BoxPassw2;
+
+        /// <summary>
+        /// ErrOld control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrOld;
+
+        /// <summary>
         /// ErrPassw control.
         /// </summary>
         /// <remarks>
@@ -130,6 +130,15 @@ namespace Web
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label ErrPassw;
+
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
         /// BtnCancel control.

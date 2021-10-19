@@ -1,28 +1,25 @@
 ﻿using System;
-
+using System.Text.RegularExpressions;
 namespace Util
 {
     public class Validar
     {
         /**
          * Valida un email.
-         * 
-         * <exception cref="FormatException"/>
-         * <exception cref="ArgumentNullException"/>
          */
         public static bool Email(string email)
         {
             try
             {
                 var addr = new System.Net.Mail.MailAddress(email);
-                return addr.Address == email;
+                return true;
             }catch(FormatException e)
             {
-                throw e;
+                return false;
             }
-            catch (ArgumentNullException e)
+            catch (Exception e)
             {
-                throw e;
+                return false;
             }
 
         }
@@ -57,6 +54,24 @@ namespace Util
             }
 
             return true;
+        }
+
+        /**
+         * Valida que una contraseña
+         * - Tenga al menos 6 carácteres
+         * - Tenga al menos una mayúscula
+         * - Tenga al menos una minúscula
+         * - Tenga al menos un número.
+         */
+        public static bool Password(string p)
+        {
+            if (p == null || p.Length < 6)
+            {
+                return false;
+            }
+
+            Regex r = new Regex(@"^.*(?=.*[a-z])(?=.*\d)(?=.*[A-Z])");
+            return r.IsMatch(p);
         }
     }
 }

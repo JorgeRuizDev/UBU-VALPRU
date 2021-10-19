@@ -14,7 +14,11 @@ namespace Data
 
         private DBPruebas()
         {
-            
+            Usuario admin = new Usuario("Paco", "González", "paco@ubusecret.es", "123456789", "Paco112");
+            admin.CambiarPassword("Paco112", "Paco1122", "Paco1122");
+            admin.Rol = Rol.Administrador;
+
+            InsertarUsuario(admin);
         }
 
         public void Reset()
@@ -144,6 +148,12 @@ namespace Data
             }
 
             return secretos;
+        }
+
+
+        public override string ToString()
+        {
+            return "Hay " + tblUsuarios.Count + " usuarios registrados y " + tblSecretos.Count + " secretos registrados.";
         }
     }
 }
