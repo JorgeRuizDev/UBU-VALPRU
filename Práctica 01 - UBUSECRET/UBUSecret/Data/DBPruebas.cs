@@ -17,6 +17,7 @@ namespace Data
             Usuario admin = new Usuario("Paco", "González", "paco@ubusecret.es", "123456789", "Paco112");
             admin.CambiarPassword("Paco112", "Paco1122", "Paco1122");
             admin.Rol = Rol.Administrador;
+            
 
             InsertarUsuario(admin);
         }

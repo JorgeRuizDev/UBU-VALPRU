@@ -6,9 +6,6 @@ namespace UBUSecret
 {
     public class Secreto
     {
-        /*
-         De cada secreto creado se crea una instancia distinta para cada receptor.
-        */
 
         int idSecreto;
         Usuario remitente;
@@ -39,9 +36,29 @@ namespace UBUSecret
         public string Titulo { get => titulo; set => titulo = value; }
         public string Alias { get => alias; set => alias = value; }
 
-        public Boolean TieneAcceso(Usuario usuario) {
-            return receptores.Find(usuario) != null;
+        public bool TieneAcceso(Usuario usuario) {
+            if (usuario != null)
+            {
+                return receptores.Find(usuario) != null;
+            }
+            else { return false; }
+        }
+
+        public void DarAcceso(Usuario usuario) {
+            if (usuario != null) {
+                receptores.AddLast(usuario);
+            }
 
         }
+
+        public bool QuitarAcceso(Usuario usuario) {
+            if (usuario != null)
+            {
+                return receptores.Remove(usuario);
+            }
+            else { return false; }
+        }
+
+
     }
 }
