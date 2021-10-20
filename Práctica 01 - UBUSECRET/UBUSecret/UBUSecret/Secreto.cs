@@ -6,9 +6,6 @@ namespace UBUSecret
 {
     public class Secreto
     {
-        /*
-         De cada secreto creado se crea una instancia distinta para cada receptor.
-        */
 
         int idSecreto;
         Usuario remitente;
