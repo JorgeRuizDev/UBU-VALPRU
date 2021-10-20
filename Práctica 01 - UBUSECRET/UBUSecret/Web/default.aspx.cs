@@ -16,7 +16,7 @@ namespace Web
         {
             ErrMail.Visible = false;
             ErrPassw.Visible = false;
-
+            this.Form.DefaultButton = this.Send.UniqueID;
             ValidarCampos();
            
             
@@ -30,8 +30,8 @@ namespace Web
 
             if (usuario != null)
             {
-                // Redirige a otra página
-                
+                Server.Transfer("secretos.aspx");
+
             }
             Stats.Text = bd.ToString() + usuario?.ToString();
         }
@@ -71,16 +71,11 @@ namespace Web
                 ICapaDatos bd = Data.DBPruebas.ObtenerInstacia();
                 Usuario u = bd.LeerUsuario(BoxMail.Text);
 
-                if (u == null)
-                {
-                    ErrMail.Text = "El usuario no existe";
-                    ErrMail.Visible = true;
-                    return;
-                }
 
-                if (!u.ComprobarPassword(BoxPassw.Text))
+
+                if (u == null || !u.ComprobarPassword(BoxPassw.Text))
                 {
-                    ErrPassw.Text = "La contraseña es incorrecta";
+                    ErrPassw.Text = "Usuario o Contraseña Incorrecto";
                     ErrPassw.Visible = true;
                     return;
                 }

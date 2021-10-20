@@ -11,6 +11,20 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
+
+    <nav runat="server" class="navbar navbar-light bg-gray-200 rounded-b-xl" id="Nav">
+      <a class="navbar-brand" href="/">
+        <img src="https://www.forocoches.com/image/top_c1_hd.png" width="60" height="60" class="d-inline-block align-top" alt="">
+        Ubusecret
+      </a>
+      <asp:HyperLink ID="HyperLink1" runat="server" href=""><span class="badge badge-pill badge-info">Panel de Administración</span></asp:HyperLink>
+      <div class="flex flex-row justify-end">
+          <asp:HyperLink ID="HyperLink2" runat="server" href="">
+            <asp:Label ID="LblUsuario" runat="server" Text="No has iniciado sesión"></asp:Label>    
+          </asp:HyperLink>
+      </div>
+    </nav>
+
     <form id="form1" runat="server">
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
