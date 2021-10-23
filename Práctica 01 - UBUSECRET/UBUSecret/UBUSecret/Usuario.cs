@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Util;
 
 
@@ -7,9 +8,6 @@ namespace UBUSecret
 {
 
     public enum Rol {Administrador, Usuario, Deshabilitado }
-
-
-    
 
     public class Usuario
     {
@@ -77,15 +75,34 @@ namespace UBUSecret
             return this.passwordHash.Equals(Crypt.Encriptar(password, this.salt));
         }
 
-        public bool CambiarPassword(string password)
-        {
-            if (password == null || password.Length == 0)
+        public bool CambiarPassword(string vieja, string nueva1, string nueva2)
+        {   
+
+            if(vieja == null)
+            {
+                return false;
+            }
+            if (nueva1 == null || nueva1.Length == 0)
             {
                 return false;
             }
 
-            this.previousPasswordHash = this.passwordHash;
-            this.passwordHash = Util.Crypt.Encriptar(password, this.salt.ToString());
+
+            if (!nueva1.Equals(nueva2))
+            {
+                return false;
+            }
+
+
+            if (!passwordHash.Equals(Crypt.Encriptar(vieja,
+                salt)))
+            {
+                
+                return false;
+            }
+
+            previousPasswordHash = this.passwordHash;
+            passwordHash = Util.Crypt.Encriptar(nueva1, this.salt.ToString());
             return true;
         }
 
@@ -103,24 +120,26 @@ namespace UBUSecret
                    salt == usuario.salt;
         }
 
-        public override int GetHashCode()
-        {
-            HashCode hash = new HashCode();
-            hash.Add(id);
-            hash.Add(nombre);
-            hash.Add(apellidos);
-            hash.Add(email);
-            hash.Add(rol);
-            hash.Add(telefono);
-            hash.Add(passwordHash);
-            hash.Add(previousPasswordHash);
-            hash.Add(salt);
-            return hash.ToHashCode();
-        }
+
 
         public override string ToString()
         {
             return String.Format("Id: {0}, Nombre: {1}, app: {2}, email: {3}, rol:{4}, tfno: {5}", this.id, this.nombre, this.apellidos, this.email, this.rol, this.telefono);
+        }
+
+        public override int GetHashCode()
+        {
+            int hashCode = -354207900;
+            hashCode = hashCode * -1521134295 + id.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(nombre);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(apellidos);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(email);
+            hashCode = hashCode * -1521134295 + rol.GetHashCode();
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(telefono);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(passwordHash);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(previousPasswordHash);
+            hashCode = hashCode * -1521134295 + EqualityComparer<string>.Default.GetHashCode(salt);
+            return hashCode;
         }
     }
 }

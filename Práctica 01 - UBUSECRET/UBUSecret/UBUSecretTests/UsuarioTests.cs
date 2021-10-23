@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using UBUSecret;
+
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -40,7 +40,7 @@ namespace UBUSecret.Tests
             Assert.IsFalse(usuario.EsValido());
 
             usuario.Rol = Rol.Usuario;
-            usuario.CambiarPassword("contrasenia123");
+            Assert.IsTrue(usuario.CambiarPassword("1234", "contrasenia123", "contrasenia123"));
 
             Assert.IsTrue(usuario.EsValido());
 
@@ -98,13 +98,22 @@ namespace UBUSecret.Tests
         [TestMethod()]
         public void CambiarPasswordTest()
         {
-            Assert.IsFalse(usuario.CambiarPassword(null));
-            Assert.IsFalse(usuario.CambiarPassword(""));
+           
+            Assert.IsFalse(usuario.CambiarPassword("", "hola", "hola"));
 
             Assert.IsTrue(usuario.ComprobarPassword("1234"));
 
-            Assert.IsTrue(usuario.CambiarPassword("Hola"));
-            Assert.IsTrue(usuario.ComprobarPassword("Hola"));
+            Assert.IsFalse(usuario.CambiarPassword("1234", null, null));
+            Assert.IsTrue(usuario.ComprobarPassword("1234"));
+
+            Assert.IsFalse(usuario.CambiarPassword("1234", "hola", "adios"));
+            Assert.IsTrue(usuario.ComprobarPassword("1234"));
+
+            Assert.IsFalse(usuario.CambiarPassword(null, null, null));
+            Assert.IsTrue(usuario.ComprobarPassword("1234"));
+
+            Assert.IsTrue(usuario.CambiarPassword("1234", "hola", "hola"));
+            Assert.IsTrue(usuario.ComprobarPassword("hola"));
 
         }
 
