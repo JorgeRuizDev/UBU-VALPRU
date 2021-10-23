@@ -1,11 +1,10 @@
 using System;
 using System.Text;
-using System.Text.RegularExpressions;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
+
 
 namespace SeleniumTests
 {
@@ -14,15 +13,14 @@ namespace SeleniumTests
     {
         private static IWebDriver driver;
         private StringBuilder verificationErrors;
-        private static string baseURL;
-        private bool acceptNextAlert = true;
+
         
         [ClassInitialize]
         public static void InitializeClass(TestContext testContext)
         {
             driver = new ChromeDriver();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
-            baseURL = "https://www.google.com/";
+
         }
         
         [ClassCleanup]
