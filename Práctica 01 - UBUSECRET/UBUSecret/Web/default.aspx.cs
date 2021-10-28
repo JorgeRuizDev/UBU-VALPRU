@@ -23,7 +23,6 @@ namespace Web
 
         private void ComprobarSesion()
         {
-            ICapaDatos bd = Data.DBPruebas.ObtenerInstacia();
 
             Usuario usuario = (Usuario)Session["usuario"];
 
@@ -32,7 +31,6 @@ namespace Web
                 Server.Transfer("secretos.aspx");
 
             }
-            Stats.Text = bd.ToString() + usuario?.ToString();
         }
 
 
@@ -84,6 +82,11 @@ namespace Web
                 ComprobarSesion();
                 
             }
+        }
+
+        protected void Registro(object sender, EventArgs e)
+        {
+            Server.Transfer("registro.aspx");
         }
     }
 

@@ -7,7 +7,7 @@
 
 
     <section class="flex flex-row justify-end mt-4 mr-4">
-        <asp:Button ID="BtnSignUp" runat="server" Text="Registrarse" class="btn btn-primary" />
+        <asp:Button ID="BtnSignUp" runat="server" Text="Registrarse" class="btn btn-primary" OnClick="Registro"/>
     </section>
     <section class="flex flex-row justify-around">
         <h1 class="text-danger">
@@ -67,6 +67,6 @@
                 <asp:Button ID="Send" runat="server" Text="Iniciar Sesión" class="btn btn-success" OnClick="Send_Click" />
             </section>
         </div>
-        <p><asp:Label ID="Stats" runat="server" Text=""></asp:Label></p>
+
     </div>
 </asp:Content>

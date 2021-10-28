@@ -11,88 +11,61 @@ namespace Web
 {
 
 
-    public partial class registro
+    public partial class crearSecreto
     {
 
         /// <summary>
-        /// LblTitle control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblTitle;
+        protected global::System.Web.UI.WebControls.Label Label1;
 
         /// <summary>
-        /// LblMail control.
+        /// BreadcrumSecret control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblMail;
+        protected global::System.Web.UI.WebControls.Label BreadcrumSecret;
 
         /// <summary>
-        /// BoxMail control.
+        /// Label2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox BoxMail;
+        protected global::System.Web.UI.WebControls.Label Label2;
 
         /// <summary>
-        /// ErrMail control.
+        /// BoxSecreto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ErrMail;
+        protected global::System.Web.UI.WebControls.TextBox BoxSecreto;
 
         /// <summary>
-        /// LblPassw control.
+        /// Label3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label LblPassw;
+        protected global::System.Web.UI.WebControls.Label Label3;
 
         /// <summary>
-        /// BoxPassw control.
+        /// BoxMails control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox BoxPassw;
-
-        /// <summary>
-        /// ErrPassw control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ErrPassw;
-
-        /// <summary>
-        /// BtnCancel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnCancel;
-
-        /// <summary>
-        /// BtnSend control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button BtnSend;
+        protected global::System.Web.UI.WebControls.TextBox BoxMails;
     }
 }

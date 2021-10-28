@@ -22,7 +22,6 @@ namespace Web
 
         protected void BtnCancel_Click(object sender, EventArgs e)
         {
-            
             Server.Transfer("default.aspx", true);
         }
 

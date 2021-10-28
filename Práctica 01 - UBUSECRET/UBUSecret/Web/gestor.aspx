@@ -21,7 +21,9 @@
                     Rol
                 </div>
             </section>
-            <asp:Label ID="Test" runat="server" Text="Label"></asp:Label>
+            <asp:Label ID="Test" runat="server" Text=""></asp:Label>
+
+
         </div>
     </div>
 </asp:Content>

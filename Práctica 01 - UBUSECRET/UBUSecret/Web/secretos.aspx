@@ -3,7 +3,15 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="./">
+                <asp:Label ID="Label2" runat="server" Text="Secretos"></asp:Label>
 
+            </a></li>
+
+        </ol>
+    </nav>
 
     <div class="w-full flex flex-col items-center space-y-5">
         <h1>
@@ -14,15 +22,18 @@
                 <div style="width: 60%" class="overflow-hidden">
                     Nombre
                 </div>
-                <div style="width: 20%" class="overflow-hidden text-center" >
+                <div style="width: 20%" class="overflow-hidden text-center">
                     Autor
                 </div>
-                
+
                 <div style="width: 20%" class="overflow-hidden text-center">
                     Fecha
                 </div>
             </section>
 
         </div>
+    </div>
+    <div class=" w-full flex justify-center">
+        <asp:Button ID="CrearSecreto" runat="server" Text="Crear Secreto" OnClick="CrearSecreto_Click" class="btn btn-success w-3/6" />
     </div>
 </asp:Content>

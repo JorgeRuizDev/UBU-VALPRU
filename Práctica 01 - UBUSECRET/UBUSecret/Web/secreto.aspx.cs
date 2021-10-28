@@ -13,6 +13,14 @@ namespace Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+            Usuario usuario = (Usuario)Session["usuario"];
+
+            if (usuario == null)
+            {
+                RedirectHome("Usuario no autenticado");
+            }
+
             int secretId = -1;
             SecretId.Text = Request["id"];
             if (Request["id"] != null)
@@ -32,7 +40,7 @@ namespace Web
                 RedirectHome("No hay Id de secreto");
             }
             
-            Usuario usuario = (Usuario) Session["usuario"];
+            
 
             ICapaDatos bd = Data.DBPruebas.ObtenerInstacia();
 
@@ -40,9 +48,13 @@ namespace Web
 
             if (secreto == null)
             {
-                
+                return;
             }
 
+            // comprobar que el usuario pueda ver dicho secreto
+
+
+            BreadcrumSecret.Text = secreto?.Titulo;
            
         }
 

@@ -70,7 +70,6 @@
 
 
             <section class="flex justify-end flex-row w-full space-x-4">
-
                 <asp:Button ID="BtnCancel" runat="server" Text="Cancelar" class="btn btn-danger"  OnClick="BtnCancel_Click"   UseSubmitBehavior="False" />
                 <asp:Button ID="BtnSend" runat="server" Text="Cambiar" class="btn btn-success" OnClick="BtnSend_Click" />
             </section>

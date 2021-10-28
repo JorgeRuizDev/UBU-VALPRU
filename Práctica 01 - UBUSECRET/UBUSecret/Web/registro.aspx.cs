@@ -11,6 +11,24 @@ namespace Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["usuario"] != null)
+            {
+                Server.Transfer("");
+            }
+
+            ErrMail.Visible = false;
+            ErrPassw.Visible = false;
+        }
+
+
+        protected void BtnCancel_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("", true);
+        }
+
+        protected void BtnSend_Click(object sender, EventArgs e)
+        {
+            // Valida y Registra;
 
         }
     }

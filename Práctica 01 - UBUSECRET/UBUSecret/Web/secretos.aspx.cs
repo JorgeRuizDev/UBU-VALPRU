@@ -49,5 +49,10 @@ namespace Web
                 
             }
         }
+
+        protected void CrearSecreto_Click(object sender, EventArgs e)
+        {
+            Server.Transfer("crearSecreto.aspx");
+        }
     }
 }
