@@ -14,19 +14,22 @@ namespace Web
         protected void Page_Load(object sender, EventArgs e)
         {
             int secretId = -1;
-
+            SecretId.Text = Request["id"];
             if (Request["id"] != null)
             {
                 try
                 {
                     secretId = Int32.Parse( Request["id"]);
-
                     
                 }
                 catch (Exception ex)
                 {
                     RedirectHome("ID Secreto Incorrecto");
                 }
+            }
+            else
+            {
+                RedirectHome("No hay Id de secreto");
             }
             
             Usuario usuario = (Usuario) Session["usuario"];
@@ -37,14 +40,15 @@ namespace Web
 
             if (secreto == null)
             {
-                RedirectHome("Id Secreto Incorrecto");
+                
             }
 
+           
         }
 
         private void RedirectHome(string err)
         {
-            Response.Redirect("default.aspx?"+ Crypt.CodificarB64(err));
+            Response.Redirect("default.aspx?err="+ Crypt.CodificarB64(err));
         }
     }
 }

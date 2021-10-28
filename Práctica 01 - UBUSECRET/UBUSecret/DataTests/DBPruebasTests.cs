@@ -31,7 +31,7 @@ namespace Data.Tests
 
         [TestMethod()]
         public void ResetTest()
-        {   
+        {
             InsertarUsuarioTest();
             bd.Reset();
             Assert.IsNull(bd.LeerUsuario("pablo@ubu.es"));
@@ -107,14 +107,14 @@ namespace Data.Tests
             Assert.IsNull(bd.BorrarSecreto(999));
             (var secreto, var remitente, var receptores) = InsertarSecreto();
 
-            
-            
+
+
             Assert.AreEqual(1, bd.LeerSecretosEnviados(remitente).Count);
             Assert.AreEqual(1, bd.LeerSecretosRecibidos(receptores.First.Value).Count);
 
-            
+
             Assert.AreEqual(secreto, bd.BorrarSecreto(secreto.IdSecreto));
-            
+
             Assert.AreEqual(0, bd.LeerSecretosEnviados(remitente).Count);
             Assert.AreEqual(0, bd.LeerSecretosEnviados(receptores.First.Value).Count);
 
@@ -148,7 +148,7 @@ namespace Data.Tests
             receptores.AddLast(receptor);
 
             Secreto secreto = new Secreto(remitente, receptores, "Este es un secreto de prueba", "Prueba", "Manolón");
-            
+
             Assert.IsTrue(bd.InsertarSecreto(secreto));
 
             Assert.AreEqual(bd.LeerSecretosEnviados(remitente).Count, 1);
@@ -197,6 +197,13 @@ namespace Data.Tests
             Assert.AreEqual(bd.LeerSecretosRecibidos(receptor).Count, 1);
 
             Assert.AreEqual(secreto, bd.LeerSecretosEnviados(remitente)[0]);
+        }
+
+        [TestMethod()]
+        public void LeerUsuariosTest()
+        {
+            InsertarPablo();
+            Assert.AreEqual(1, bd.LeerUsuarios().Count);
         }
     }
 }

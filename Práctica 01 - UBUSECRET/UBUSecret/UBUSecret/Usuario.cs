@@ -7,7 +7,7 @@ using Util;
 namespace UBUSecret
 {
 
-    public enum Rol {Administrador, Usuario, Deshabilitado }
+    public enum Rol {Administrador = 1, Usuario = 2, Deshabilitado =3 }
 
     public class Usuario
     {

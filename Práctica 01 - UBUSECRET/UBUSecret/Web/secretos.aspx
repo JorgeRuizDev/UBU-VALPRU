@@ -17,6 +17,7 @@
                 <div style="width: 20%" class="overflow-hidden text-center" >
                     Autor
                 </div>
+                
                 <div style="width: 20%" class="overflow-hidden text-center">
                     Fecha
                 </div>

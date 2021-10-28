@@ -11,7 +11,7 @@
     </asp:ContentPlaceHolder>
 </head>
 <body >
-    <form id="form1" runat="server" class="p-4">
+    <form id="form1" runat="server" >
     <nav runat="server" class="navbar navbar-light bg-gray-200 rounded-b-xl" id="Nav">
       <a class="navbar-brand" href="/">
         <img src="https://www.forocoches.com/image/top_c1_hd.png" width="60" height="60" class="d-inline-block align-top" alt="">
@@ -35,7 +35,7 @@
         <asp:Label ID="ErrMsg" runat="server" Text="error"></asp:Label>
     </div>
     
-        <div>
+        <div class="p-3">
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>

@@ -49,6 +49,7 @@ namespace Web
         protected void LinkSesión_Click(object sender, EventArgs e)
         {
             Session["usuario"] = null;
+            Response.Redirect("default.aspx", true);
         }
     }
 }

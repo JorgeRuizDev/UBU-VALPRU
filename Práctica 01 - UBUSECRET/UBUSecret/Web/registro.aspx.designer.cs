@@ -10,7 +10,7 @@
 
 namespace Web
 {
-    public partial class WebForm3
+    public partial class registro
     {
     }
 }

@@ -15,6 +15,8 @@ namespace Interfaces
 
         List<Usuario> LeerUsuariosDeshabilitados();
 
+        List<Usuario> LeerUsuarios();
+
         Secreto BorrarSecreto(int idSecreto);
         bool InsertarSecreto(Secreto secreto);
 

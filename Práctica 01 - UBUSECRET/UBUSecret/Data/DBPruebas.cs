@@ -93,7 +93,18 @@ namespace Data
             }
             return usuariosDeshabilitados;
         }
-        
+
+        public List<Usuario> LeerUsuarios()
+        {
+            var usuarios = new List<Usuario>();
+
+            foreach (var usuario in tblUsuarios.Values)
+            {
+                    usuarios.Add(usuario);
+            }
+            return usuarios;
+        }
+
 
         public Secreto BorrarSecreto(int idSecreto) {
 
