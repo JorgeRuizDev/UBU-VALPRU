@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UBUSecret;
+using Util;
 namespace Web
 {
     public partial class secretos : System.Web.UI.Page
@@ -15,9 +16,19 @@ namespace Web
 
             if (usuario == null)
             {
-                Response.Redirect("default.aspx");
+                
+                Response.Redirect("default.aspx?err="+ Crypt.CodificarB64("Usuario No Autenticado"));
+            }else if (usuario.Rol == Rol.Deshabilitado)
+            {
+                Session["usuario"] = null;
+                Response.Redirect("default.aspx?err=" + Crypt.CodificarB64("Un administrador debe darte acceso manualmente"));     
             }
-
+            else if (!usuario.EsValido())
+            {
+                Session["usuario"] = null;
+                Response.Redirect("default.aspx?err=" + Crypt.CodificarB64("No tienes permisos para realizar esta acción. ¿Has cambiado tu contraseña al menos una vez?"));
+                
+            }
 
             for (int i = 0; i < 10; i++)
             {

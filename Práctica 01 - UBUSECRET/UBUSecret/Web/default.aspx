@@ -10,8 +10,14 @@
         <asp:Button ID="BtnSignUp" runat="server" Text="Registrarse" class="btn btn-primary" />
     </section>
     <section class="flex flex-row justify-around">
+        <h1 class="text-danger">
+            <asp:Label ID="LblAutenticado" runat="server" Text="No Autenticado" Visible="False"></asp:Label>
+        </h1>
+    </section>
+    <section class="flex flex-row justify-around">
         <h1>
-            <asp:Label ID="LblTitle" runat="server" Text="UBUSECRET"></asp:Label></h1>
+            <asp:Label ID="LblTitle" runat="server" Text="UBUSECRET"></asp:Label>
+        </h1>
     </section>
 
 

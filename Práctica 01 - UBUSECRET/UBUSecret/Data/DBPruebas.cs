@@ -14,12 +14,15 @@ namespace Data
 
         private DBPruebas()
         {
-            Usuario admin = new Usuario("Paco", "González", "paco@ubusecret.es", "123456789", "Paco112");
-            admin.CambiarPassword("Paco112", "Paco1122", "Paco1122");
-            admin.Rol = Rol.Administrador;
-            
+            Usuario paco = new Usuario("Paco", "González", "paco@ubusecret.es", "123456789", "Paco1122");
+            Usuario gestor = new Usuario("Gestor", "Ubusecret", "gestor@ubusecret.es", "123456789", "Gestor11");
 
-            InsertarUsuario(admin);
+            gestor.CambiarPassword("Gestor11", "Gestor1122", "Gestor1122");
+
+            gestor.Rol = Rol.Administrador;
+
+            InsertarUsuario(gestor);
+            InsertarUsuario(paco);
         }
 
         public void Reset()

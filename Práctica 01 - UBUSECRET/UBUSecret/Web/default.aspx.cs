@@ -18,7 +18,6 @@ namespace Web
             ErrPassw.Visible = false;
             this.Form.DefaultButton = this.Send.UniqueID;
             ValidarCampos();
-           
             
         }
 

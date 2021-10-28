@@ -71,6 +71,8 @@
     <Content Include="Web.config" />
     <Content Include="default.aspx" />
     <Content Include="cambiarPassword.aspx" />
+    <Content Include="SecretoDetalles.aspx" />
+    <Content Include="gestor.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -101,6 +103,20 @@
     </Compile>
     <Compile Include="cambiarPassword.aspx.designer.cs">
       <DependentUpon>cambiarPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SecretoDetalles.aspx.cs">
+      <DependentUpon>SecretoDetalles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SecretoDetalles.aspx.designer.cs">
+      <DependentUpon>SecretoDetalles.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="gestor.aspx.cs">
+      <DependentUpon>gestor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="gestor.aspx.designer.cs">
+      <DependentUpon>gestor.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

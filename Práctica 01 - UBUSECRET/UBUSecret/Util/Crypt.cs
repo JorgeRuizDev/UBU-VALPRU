@@ -13,6 +13,25 @@ namespace Util
             return (System.Text.Encoding.ASCII.GetString(bytes));
         }
 
+        public static string CodificarB64(string t)
+        {
+            var plainTextBytes = System.Text.Encoding.UTF8.GetBytes(t);
+            return System.Convert.ToBase64String(plainTextBytes);
+        }
 
+        public static string DecodificarB64(string t)
+        {
+            try
+            {
+                var base64EncodedBytes = System.Convert.FromBase64String(t);
+                return System.Text.Encoding.UTF8.GetString(base64EncodedBytes);
+            }
+            catch
+            {
+                return "Código Desconocido";
+            }
+
+        }
+           
     }
-}
+}  

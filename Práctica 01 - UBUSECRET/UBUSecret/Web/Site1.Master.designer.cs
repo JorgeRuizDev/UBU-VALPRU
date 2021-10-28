@@ -24,6 +24,15 @@ namespace Web
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
 
         /// <summary>
+        /// form1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+
+        /// <summary>
         /// Nav control.
         /// </summary>
         /// <remarks>
@@ -33,22 +42,22 @@ namespace Web
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl Nav;
 
         /// <summary>
-        /// HyperLink1 control.
+        /// Admin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+        protected global::System.Web.UI.WebControls.HyperLink Admin;
 
         /// <summary>
-        /// HyperLink2 control.
+        /// LinkSesión control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
+        protected global::System.Web.UI.WebControls.LinkButton LinkSesión;
 
         /// <summary>
         /// LblUsuario control.
@@ -60,13 +69,22 @@ namespace Web
         protected global::System.Web.UI.WebControls.Label LblUsuario;
 
         /// <summary>
-        /// form1 control.
+        /// ErrBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ErrBox;
+
+        /// <summary>
+        /// ErrMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrMsg;
 
         /// <summary>
         /// ContentPlaceHolder1 control.

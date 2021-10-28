@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using UBUSecret;
+using Util;
 namespace Web
 {
     public partial class Site1 : System.Web.UI.MasterPage
@@ -15,6 +16,14 @@ namespace Web
             Usuario usuario = (Usuario)Session["usuario"];
 
             Nav.Visible = false;
+            ErrBox.Visible = false;
+            Admin.Visible = false;
+            if (Request["err"] != null)
+            {
+                ErrBox.Visible = true;
+                ErrMsg.Text = Crypt.DecodificarB64(Request["err"]);
+            }
+
 
             if (usuario != null)
             {
@@ -23,6 +32,11 @@ namespace Web
 
                 string path = HttpContext.Current.Request.Url.AbsolutePath;
                 
+                if (usuario.Rol == Rol.Administrador)
+                {
+                    Admin.Visible = true;
+                }
+
 
                 if (!Page.IsPostBack && (path == "/" || path == "/default.aspx"))
                 {
@@ -30,6 +44,11 @@ namespace Web
                 }
             }
 
+        }
+
+        protected void LinkSesión_Click(object sender, EventArgs e)
+        {
+            Session["usuario"] = null;
         }
     }
 }

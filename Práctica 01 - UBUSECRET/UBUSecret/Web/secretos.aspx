@@ -21,17 +21,7 @@
                     Fecha
                 </div>
             </section>
-            <section class="alert alert-primary" role="alert" class="flex flex-row ">
-                <div style="width: 60%">
-                    Nombre
-                </div>
-                <div style="width: 20%">
-                    Autor
-                </div>
-                <div style="width: 20%">
-                    Fecha
-                </div>
-            </section>
+
         </div>
     </div>
 </asp:Content>
