@@ -23,7 +23,7 @@ namespace Web
 
         protected void BtnCancel_Click(object sender, EventArgs e)
         {
-            Server.Transfer("", true);
+            Server.Transfer("default.aspx", true);
         }
 
         protected void BtnSend_Click(object sender, EventArgs e)

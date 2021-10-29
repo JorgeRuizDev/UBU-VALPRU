@@ -70,7 +70,6 @@ namespace Web
 
             if (BoxPassw.Text.Length > 0 || BoxPassw2.Text.Length > 0)
             {
-
                 if (!Validar.Password(BoxPassw.Text))
                 {
                     ErrPassw.Text = "La contraseña no es lo suficientemente fuerte";
@@ -85,11 +84,13 @@ namespace Web
                     esValido = false;
                 }
 
-
+                if (BoxPassw.Text.Equals(BoxOld.Text))
+                {
+                    ErrPassw.Text = "Las contraseñas Son Igulaes";
+                    ErrPassw.Visible = true;
+                    esValido = false;
+                }
             }
-
-
-
             return esValido;
         }
     }
