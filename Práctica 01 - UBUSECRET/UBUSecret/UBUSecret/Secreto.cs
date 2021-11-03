@@ -7,13 +7,13 @@ namespace UBUSecret
     public class Secreto
     {
 
-        int idSecreto;
-        Usuario remitente;
-        string alias;
-        string mensaje;
-        string titulo;
-        DateTime diaHora;
-        LinkedList<Usuario> receptores;
+        private int idSecreto;
+        private Usuario remitente;
+        private string alias;
+        private string mensaje;
+        private string titulo;
+        private DateTime diaHora;
+        private LinkedList<Usuario> receptores;
         private static int IDSEQ = 0;
 
 
@@ -26,7 +26,7 @@ namespace UBUSecret
             this.Receptores = receptores;
             this.Alias = alias;
             this.Titulo = titulo;
-            this.diaHora = DateTime.Now;
+            this.DiaHora = DateTime.UtcNow;
 
         }
 
@@ -34,9 +34,12 @@ namespace UBUSecret
         public Usuario Remitente { get => remitente; set => remitente = value; }
         public string Mensaje { get => mensaje; set => mensaje = value; }
 
+        
+
         public LinkedList<Usuario> Receptores { get => receptores; set => receptores = value; }
         public string Titulo { get => titulo; set => titulo = value; }
         public string Alias { get => alias; set => alias = value; }
+        public DateTime DiaHora { get => diaHora; set => diaHora = value; }
 
         public bool TieneAcceso(Usuario usuario) {
             if (usuario != null)
