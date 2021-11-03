@@ -47,29 +47,6 @@ namespace UBUSecret.Tests
         }
 
 
-        [TestMethod()]
-        public void ValidarEmail()
-        {
-            Usuario u1 = new Usuario("Pedro", "Piqueras", "pedro@ubu.es", "631 882 831", "1234");
-
-            try
-            {
-                Usuario u2 = new Usuario("Pedro", "Piqueras", "pedro@ubu", "631 882 831", "1234");
-            }catch(Exception e)
-            {
-                Assert.IsTrue(e is FormatException);
-            }
-
-            try
-            {
-                Usuario u2 = new Usuario("Pedro", "Piqueras", null, "631 882 831", "1234");
-            }
-            catch (Exception e)
-            {
-                Assert.IsTrue(e is ArgumentNullException);
-            }
-
-        }
 
         [TestMethod()]
         public void ValidarTelefonoTest()
