@@ -23,6 +23,8 @@ namespace UBUSecret.Tests
         [TestInitialize()]
         public void Inicializacion()
         {
+            receptores = new LinkedList<Usuario>();
+            
             this.remitente = new Usuario("Pedro", "Piqueras", "pedro@ubu.es", "631 882 831", "1234");
 
             receptorA = new Usuario("Fernando", "Pozo", "fer@ubu.es", "631 452 831", "1222");

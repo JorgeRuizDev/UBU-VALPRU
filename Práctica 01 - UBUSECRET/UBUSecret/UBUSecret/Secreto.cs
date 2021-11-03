@@ -12,6 +12,7 @@ namespace UBUSecret
         string alias;
         string mensaje;
         string titulo;
+        DateTime diaHora;
         LinkedList<Usuario> receptores;
         private static int IDSEQ = 0;
 
@@ -25,6 +26,7 @@ namespace UBUSecret
             this.Receptores = receptores;
             this.Alias = alias;
             this.Titulo = titulo;
+            this.diaHora = DateTime.Now;
 
         }
 
