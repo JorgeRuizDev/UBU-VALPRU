@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using UBUSecret;
 using Util;
+using Interfaces;
 namespace Web
 {
     public partial class secretos : System.Web.UI.Page
@@ -13,7 +14,7 @@ namespace Web
         protected void Page_Load(object sender, EventArgs e)
         {
             Usuario usuario = (Usuario)Session["usuario"];
-
+            ICapaDatos db = Data.DBPruebas.ObtenerInstacia();
             if (usuario == null)
             {
                 
@@ -30,7 +31,9 @@ namespace Web
                 
             }
 
-            for (int i = 0; i < 10; i++)
+            var secretos = db.LeerSecretosRecibidos(usuario);
+
+            foreach (var secreto in secretos)
             {
                 Secretos.InnerHtml += String.Format(@"
                 <a href=""secreto.aspx?id={3}"">
@@ -45,7 +48,7 @@ namespace Web
                             {2}
                         </div>
                     </section>
-                </ a >", "", "Don Ilitri", "Hoy ", i);
+                </ a >", secreto.Titulo, secreto.Alias, "Hoy", secreto.IdSecreto);
                 
             }
         }
