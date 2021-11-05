@@ -48,8 +48,9 @@ namespace Web
                             {2}
                         </div>
                     </section>
-                </ a >", secreto.Titulo, secreto.Alias, "Hoy", secreto.IdSecreto);
-                
+                </ a >", secreto.Titulo, secreto.Alias, secreto.DiaHora.ToString(), secreto.IdSecreto);
+
+
             }
         }
 

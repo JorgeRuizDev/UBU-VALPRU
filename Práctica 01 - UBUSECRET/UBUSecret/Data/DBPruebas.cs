@@ -16,6 +16,11 @@ namespace Data
         {
             Usuario paco = new Usuario("Paco", "González", "paco@ubusecret.es", "123456789", "Paco1122");
             Usuario gestor = new Usuario("Gestor", "Ubusecret", "gestor@ubusecret.es", "123456789", "Gestor11");
+            paco.Rol = Rol.Administrador;
+            var receptores = new LinkedList<Usuario>();
+            receptores.AddLast(paco);
+
+            var secreto = new Secreto(gestor, receptores, "Hola este es el mensaje", "Título Secreto", "No soy el gestor");
 
             gestor.CambiarPassword("Gestor11", "Gestor1122", "Gestor1122");
 
@@ -23,6 +28,7 @@ namespace Data
 
             InsertarUsuario(gestor);
             InsertarUsuario(paco);
+            InsertarSecreto(secreto);
         }
 
         public void Reset()
