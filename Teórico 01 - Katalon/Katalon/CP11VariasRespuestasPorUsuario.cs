@@ -55,12 +55,18 @@ namespace SeleniumTests
         [TestMethod]
         public void TheCP11VariasRespuestasPorUsuarioTest()
         {
+            //Abrimos la web
             driver.Navigate().GoToUrl("https://docs.google.com/forms/d/e/1FAIpQLSeLqx5UUpNwRN5g6UmT_IUhleG1r_dwDtmAC-yGL0OdhqKZ1Q/viewform");
+            
             driver.FindElement(By.XPath("//div[@id='i5']/div[3]/div")).Click();
+
+            //Reseteamos el formulario
             driver.FindElement(By.XPath("//form[@id='mG61Hd']/div[2]/div/div[3]/div/div/div/span/span")).Click();
             Thread.Sleep(300);
             driver.FindElement(By.XPath("//div[@id='i10']/div[2]")).Click();
             Thread.Sleep(300);
+
+            //Respondemos las preguntas obligatorias
             driver.FindElement(By.XPath("//form[@id='mG61Hd']/div[2]/div/div[2]/div[6]/div/div/div[2]/div/div/div/div[2]/span/div[2]/div/div/div[3]/div")).Click();
             driver.FindElement(By.XPath("//form[@id='mG61Hd']/div[2]/div/div[2]/div[6]/div/div/div[2]/div/div/div/div[4]/span/div[3]/div/div/div[3]/div")).Click();
             driver.FindElement(By.XPath("//form[@id='mG61Hd']/div[2]/div/div[2]/div[6]/div/div/div[2]/div/div/div/div[6]/span/div[4]/div/div/div[3]/div")).Click();
@@ -69,6 +75,8 @@ namespace SeleniumTests
             driver.FindElement(By.XPath("//form[@id='mG61Hd']/div[2]/div/div[2]/div[6]/div/div/div[2]/div/div/div/div[12]/span/div[5]/div/div/div[3]/div")).Click();
             driver.FindElement(By.XPath("//form[@id='mG61Hd']/div[2]/div/div[2]/div[6]/div/div/div[2]/div/div/div/div[14]/span/div[4]/div/div/div[3]/div")).Click();
             driver.FindElement(By.XPath("//form[@id='mG61Hd']/div[2]/div/div[3]/div/div/div[2]/span/span")).Click();
+            
+            //Comprobamos que se ha registrado la respuesta
             try
             {
                 Assert.AreEqual("Se ha registrado tu respuesta", driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Estudio Consumidores de ColaCao'])[2]/following::div[1]")).Text);
@@ -77,10 +85,16 @@ namespace SeleniumTests
             {
                 verificationErrors.Append(e.Message);
             }
+            
+            //Hacemos clic en enviar otra respuesta
             driver.FindElement(By.LinkText("Enviar otra respuesta")).Click();
+
+            //Rellenamos la segunda respuesta (esta vez no consume)
             driver.FindElement(By.XPath("//div[@id='i8']/div[3]/div")).Click();
             driver.FindElement(By.XPath("//form[@id='mG61Hd']/div[2]/div/div[3]/div/div/div/span")).Click();
             driver.FindElement(By.XPath("//form[@id='mG61Hd']/div[2]/div/div[3]/div/div/div[2]/span/span")).Click();
+
+            //Comprobamos que se ha registrado la respuesta
             try
             {
                 Assert.AreEqual("Se ha registrado tu respuesta", driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Estudio Consumidores de ColaCao'])[2]/following::div[1]")).Text);
