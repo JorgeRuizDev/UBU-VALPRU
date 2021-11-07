@@ -205,5 +205,46 @@ namespace Data.Tests
             InsertarPablo();
             Assert.AreEqual(1, bd.LeerUsuarios().Count);
         }
+
+        [TestMethod()]
+        public void ResetLogsTest()
+        {
+            //Añadimos un log
+            AñadirLogTest();
+
+            //Reseteamos los Log
+            bd.ResetLogs();
+
+            //Comprobamos que esta vacia
+            Assert.Equals(bd.LeerLogs().Count, 0);
+        }
+
+        [TestMethod()]
+        public void LeerLogsTest()
+        {
+            //Añadimos un log
+            AñadirLogTest();
+
+            //Leemos los log
+            List<Log> lista = bd.LeerLogs();
+
+            //Comprobamos que la lista sea la correspondiente a los log
+            Assert.Equals(lista.Count, 1);
+
+        }
+
+        [TestMethod()]
+        public void AñadirLogTest()
+        {
+            //Comprobamos que esta vacia
+            Assert.Equals(bd.LeerLogs().Count, 0);
+
+            //Añadimos el nuevo log
+            Logger.Log("Prueba", Level.ERROR);
+
+            //Comprobamos que contiene el log
+            Assert.Equals(bd.LeerLogs().Count, 1);
+
+        }
     }
 }
