@@ -50,6 +50,7 @@ namespace Web
 
                 Session["usuario"] = usuario;
                 Server.Transfer("default.aspx", true);
+                return;
             }
         }
 

@@ -24,5 +24,7 @@ namespace Interfaces
         List<Secreto> LeerSecretosEnviados(Usuario usuario);
 
         void Reset();
+
+        ICapaDatos SoftReset();
     }
 }
