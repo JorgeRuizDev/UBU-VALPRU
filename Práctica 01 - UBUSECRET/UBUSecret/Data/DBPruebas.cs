@@ -221,6 +221,28 @@ namespace Data
             logs = new SortedList<DateTime, Log>();
         }
 
+        public void AñadirLog(Log Log) {
+            logs.Add(Log.Timestamp,Log);
+        }
+
+        public List<Log> LeerLogs()
+        {
+            List<Log> list = new List<Log>();
+
+            foreach (Log log in logs.Values)
+            {
+                list.Add(log);
+            }
+
+            return list;
+        }
+
+        public void ResetLogs()
+        {
+            logs = new SortedList<DateTime, Log>();
+        }
+
+
         public override string ToString()
         {
             return "Hay " + tblUsuarios.Count + " usuarios registrados y " + tblSecretos.Count + " secretos registrados.";
