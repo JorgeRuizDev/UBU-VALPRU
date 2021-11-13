@@ -9,6 +9,7 @@ namespace Data
     {
         private SortedList<int, Usuario> tblUsuarios = new SortedList<int, Usuario>();
         private SortedList<int, Secreto> tblSecretos = new SortedList<int, Secreto>();
+        private SortedList<DateTime, Log> logs = new SortedList<DateTime, Log>();
 
         private static DBPruebas instancia = new DBPruebas();
 
@@ -199,6 +200,26 @@ namespace Data
             return secretos;
         }
 
+        public void AñadirLog(Log Log) {
+            logs.Add(Log.Timestamp,Log);
+        }
+
+        public List<Log> LeerLogs()
+        {
+            List<Log> list = new List<Log>();
+
+            foreach (Log log in logs.Values)
+            {
+                list.Add(log);
+            }
+
+            return list;
+        }
+
+        public void ResetLogs()
+        {
+            logs = new SortedList<DateTime, Log>();
+        }
 
         public override string ToString()
         {

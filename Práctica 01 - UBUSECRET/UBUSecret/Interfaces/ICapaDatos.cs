@@ -23,6 +23,13 @@ namespace Interfaces
         List<Secreto> LeerSecretosRecibidos(Usuario usuario);
         List<Secreto> LeerSecretosEnviados(Usuario usuario);
 
+
+        void AñadirLog(Log Log);
+        List<Log> LeerLogs();
+        void ResetLogs();
+
+
+
         void Reset();
 
         ICapaDatos SoftReset();
