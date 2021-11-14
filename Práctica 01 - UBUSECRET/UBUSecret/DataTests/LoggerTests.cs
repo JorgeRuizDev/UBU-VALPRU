@@ -21,19 +21,19 @@ namespace UBUSecret.Tests
             bd.ResetLogs();
 
             //Comprobamos que esta vacia
-            Assert.Equals(bd.LeerLogs().Count, 0);
+            Assert.AreEqual(bd.LeerLogs().Count, 0);
 
             //Añadimos el nuevo log
             Logger.Log("Prueba",Level.ERROR);
 
             //Comprobamos que contiene el log
-            Assert.Equals(bd.LeerLogs().Count, 1);
+            Assert.AreEqual(bd.LeerLogs().Count, 1);
 
             //Reseteamos los Log
             bd.ResetLogs();
 
             //Comprobamos que esta vacia
-            Assert.Equals(bd.LeerLogs().Count, 0);
+            Assert.AreEqual(bd.LeerLogs().Count, 0);
 
 
         }

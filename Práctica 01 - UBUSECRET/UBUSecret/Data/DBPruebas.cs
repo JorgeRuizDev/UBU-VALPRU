@@ -15,20 +15,39 @@ namespace Data
 
         private DBPruebas()
         {
-            Usuario paco = new Usuario("Paco", "González", "paco@ubusecret.es", "123456789", "Paco1122");
+            Setup();
+        }
+
+        private void Setup()
+        {
+            Usuario paco = new Usuario("Paco", "González", "paco@ubusecret.es", "123456789", "Paco11");
+            Usuario pepe = new Usuario("Pepe", "Pepe", "pepe@ubusecret.es", "123456789", "Pepe11");
+            Usuario juan = new Usuario("Juan", "Carlos", "juan@ubusecret.es", "123456788", "Juan11");
+            Usuario alberto = new Usuario("Alberto", "Hernández", "alberto@ubusecret.es", "123412345", "Alberto11");
             Usuario gestor = new Usuario("Gestor", "Ubusecret", "gestor@ubusecret.es", "123456789", "Gestor11");
-            paco.Rol = Rol.Administrador;
+
             var receptores = new LinkedList<Usuario>();
             receptores.AddLast(paco);
+            receptores.AddLast(pepe);
+            receptores.AddLast(juan);
 
-            var secreto = new Secreto(gestor, receptores, "Hola este es el mensaje", "Título Secreto", "No soy el gestor");
+            var secreto = new Secreto(gestor, receptores, "Hola este es el mensaje", "Un secreto más", "No soy el gestor");
 
+            // Cambio de contraseñas
             gestor.CambiarPassword("Gestor11", "Gestor1122", "Gestor1122");
+            juan.CambiarPassword("Juan11", "Juan1122", "Juan1122");
+            alberto.CambiarPassword("Alberto11", "Alberto1122", "Alberto1122");
 
+            // Cambiar Roles
             gestor.Rol = Rol.Administrador;
+            juan.Rol = Rol.Usuario;
+            paco.Rol = Rol.Usuario;
 
             InsertarUsuario(gestor);
             InsertarUsuario(paco);
+            InsertarUsuario(pepe);
+            InsertarUsuario(juan);
+            InsertarUsuario(alberto);
             InsertarSecreto(secreto);
         }
 

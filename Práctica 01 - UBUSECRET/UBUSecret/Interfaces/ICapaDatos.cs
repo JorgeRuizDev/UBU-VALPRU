@@ -32,6 +32,6 @@ namespace Interfaces
 
         void Reset();
 
-        ICapaDatos SoftReset();
+        
     }
 }
