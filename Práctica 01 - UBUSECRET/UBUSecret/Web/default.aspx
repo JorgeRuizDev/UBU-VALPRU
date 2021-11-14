@@ -7,7 +7,7 @@
 
 
     <section class="flex flex-row justify-end mt-4 mr-4">
-        <asp:Button ID="BtnSignUp" runat="server" Text="Registrarse" class="btn btn-primary" OnClick="Registro"/>
+        <asp:Button ID="BtnSignUp" runat="server" Text="Registrarse" class="btn btn-primary" OnClick="Registro" UseSubmitBehavior="false"/>
     </section>
     <section class="flex flex-row justify-around">
         <h1 class="text-danger">

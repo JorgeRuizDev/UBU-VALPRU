@@ -70,7 +70,6 @@
     <Content Include="crearSecreto.aspx" />
     <Content Include="registro.aspx" />
     <Content Include="secretos.aspx" />
-    <Content Include="Web.config" />
     <Content Include="default.aspx" />
     <Content Include="cambiarPassword.aspx" />
     <Content Include="secreto.aspx" />
@@ -138,12 +137,6 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Site1.Master" />
-    <None Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

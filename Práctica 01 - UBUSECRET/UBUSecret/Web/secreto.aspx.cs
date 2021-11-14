@@ -45,6 +45,12 @@ namespace Web
             ICapaDatos bd = Data.DBPruebas.ObtenerInstacia();
 
             Secreto secreto = null;
+            foreach (Secreto element in bd.LeerSecretosRecibidos(usuario)) {
+                if (element.IdSecreto == secretId) {
+                    secreto = element;
+                }
+            }
+
 
             if (secreto == null)
             {
@@ -52,10 +58,12 @@ namespace Web
             }
 
             // comprobar que el usuario pueda ver dicho secreto
-
-
             BreadcrumSecret.Text = secreto?.Titulo;
-           
+            secreo.Text = secreto.Mensaje;
+            titulo.Text = secreto.Titulo;
+            autor.Text = secreto.Alias;
+            fecha.Text = secreto.DiaHora.ToString();
+
         }
 
         private void RedirectHome(string err)
