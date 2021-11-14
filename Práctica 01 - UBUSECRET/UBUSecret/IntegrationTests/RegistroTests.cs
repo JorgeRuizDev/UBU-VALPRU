@@ -95,9 +95,151 @@ namespace IntegrationTests
                 driver.FindElement(By.Id("ContentPlaceHolder1_BtnCancel")).Click();
 
             }
-
-            
         }
+
+        [TestMethod]
+        public void ThePruebaRegFuerzaContaseATest()
+        {
+            foreach (var driver in drivers)
+            {
+                driver.Navigate().GoToUrl("https://localhost:44319/registro.aspx");
+                driver.FindElement(By.Id("ContentPlaceHolder1_BtnSignUp")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxMail")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxMail")).Clear();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxMail")).SendKeys("asdfahlkfn");
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxPassw")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxPassw")).Clear();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxPassw")).SendKeys("gfdkjshd");
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxPassw2")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxPassw2")).Clear();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxPassw2")).SendKeys("sdkjfks");
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextBoxName")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextBoxName")).Clear();
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextBoxName")).SendKeys("dfs");
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextBoxSurName")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextBoxSurName")).Clear();
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextBoxSurName")).SendKeys("sd");
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextPhone")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextPhone")).Clear();
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextPhone")).SendKeys("sdfs");
+                driver.FindElement(By.Id("ContentPlaceHolder1_BtnSend")).Click();
+                try
+                {
+                    Assert.AreEqual("La contraseña no es lo suficientemente fuerte", driver.FindElement(By.Id("ContentPlaceHolder1_ErrPassw")).Text);
+                }
+                catch (Exception e)
+                {
+                    verificationErrors.Append(e.Message);
+                }
+                driver.FindElement(By.Id("ContentPlaceHolder1_BtnCancel")).Click();
+
+            }
+        }
+
+
+        [TestMethod]
+        public void ThePruebaRegContaseANoCoincideTest()
+        {
+
+            foreach (var driver in drivers)
+            {
+                driver.Navigate().GoToUrl("https://localhost:44319/registro.aspx");
+                driver.FindElement(By.Id("ContentPlaceHolder1_BtnSignUp")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxMail")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxMail")).Clear();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxMail")).SendKeys("asdfahlkfn");
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxPassw")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxPassw")).Clear();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxPassw")).SendKeys("gfdkjshd");
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxPassw2")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxPassw2")).Clear();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxPassw2")).SendKeys("sdkjfks");
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextBoxName")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextBoxName")).Clear();
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextBoxName")).SendKeys("dfs");
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextBoxSurName")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextBoxSurName")).Clear();
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextBoxSurName")).SendKeys("sd");
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextPhone")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextPhone")).Clear();
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextPhone")).SendKeys("sdfs");
+                driver.FindElement(By.Id("ContentPlaceHolder1_BtnSend")).Click();
+                try
+                {
+                    Assert.AreEqual("Las contraseñas no coinciden", driver.FindElement(By.Id("ContentPlaceHolder1_ErrPassw2")).Text);
+                }
+                catch (Exception e)
+                {
+                    verificationErrors.Append(e.Message);
+                }
+                driver.FindElement(By.Id("ContentPlaceHolder1_BtnCancel")).Click();
+            }
+        }
+
+
+        [TestMethod]
+        public void ThePruebaRegCancelarTest()
+        {
+            foreach (var driver in drivers)
+            {
+                driver.Navigate().GoToUrl("https://localhost:44319/registro.aspx");
+                driver.FindElement(By.Id("ContentPlaceHolder1_BtnSignUp")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BtnCancel")).Click();
+                try
+                {
+                    Assert.AreEqual("Inicio de Sesión.", driver.FindElement(By.Id("ContentPlaceHolder1_Label2")).Text);
+                }
+                catch (Exception e)
+                {
+                    verificationErrors.Append(e.Message);
+                }
+            }
+        }
+
+
+        [TestMethod]
+        public void TheRegTelefonoTest()
+        {
+            foreach (var driver in drivers)
+            {
+                driver.Navigate().GoToUrl("https://localhost:44319/registro.aspx");
+                driver.FindElement(By.Id("ContentPlaceHolder1_BtnSignUp")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxMail")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxMail")).Clear();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxMail")).SendKeys("daSDA");
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxPassw")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxPassw")).Clear();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxPassw")).SendKeys("ASDasd");
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxPassw2")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxPassw2")).Clear();
+                driver.FindElement(By.Id("ContentPlaceHolder1_BoxPassw2")).SendKeys("asd");
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextBoxName")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextBoxName")).Clear();
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextBoxName")).SendKeys("asdsadf");
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextBoxSurName")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextBoxSurName")).Clear();
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextBoxSurName")).SendKeys("asda");
+                driver.FindElement(By.XPath("//form[@id='form1']/div[3]/div/div")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextPhone")).Click();
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextPhone")).Clear();
+                driver.FindElement(By.Id("ContentPlaceHolder1_TextPhone")).SendKeys("23esadf");
+                driver.FindElement(By.Id("ContentPlaceHolder1_BtnSend")).Click();
+                try
+                {
+                    Assert.AreEqual("Telefono erroneo", driver.FindElement(By.Id("ContentPlaceHolder1_ErrPhone")).Text);
+                }
+                catch (Exception e)
+                {
+                    verificationErrors.Append(e.Message);
+                }
+                driver.FindElement(By.Id("ContentPlaceHolder1_BtnCancel")).Click();
+            }
+        }
+
+
+
+
+
 
 
 
