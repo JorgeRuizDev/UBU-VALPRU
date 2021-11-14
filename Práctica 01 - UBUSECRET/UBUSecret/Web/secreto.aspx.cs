@@ -22,7 +22,7 @@ namespace Web
             }
 
             int secretId = -1;
-            SecretId.Text = Request["id"];
+            
             if (Request["id"] != null)
             {
                 try

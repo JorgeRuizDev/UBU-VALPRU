@@ -16,7 +16,7 @@
         </ol>
     </nav>
 
-
+    <div class="w-full m-5 p-2 shadow-lg  rounded-sm">
         <h4>
             <asp:Label ID="Label2" runat="server" Text="Título:" class="text-center"></asp:Label>
         </h4>
@@ -50,6 +50,6 @@
         </p>
 
 
-
-    <asp:Label ID="SecretId" runat="server" Text="Label"></asp:Label>
+    </div>
+    
 </asp:Content>
