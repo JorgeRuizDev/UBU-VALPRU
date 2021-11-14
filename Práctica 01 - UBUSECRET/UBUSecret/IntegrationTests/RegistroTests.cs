@@ -63,7 +63,7 @@ namespace IntegrationTests
 
             foreach (var driver in drivers) {
 
-                driver.Navigate().GoToUrl("https://localhost:44319/");
+                driver.Navigate().GoToUrl(baseURL);
                 driver.FindElement(By.Id("ContentPlaceHolder1_BtnSignUp")).Click();
                 driver.FindElement(By.Id("ContentPlaceHolder1_BoxMail")).Click();
                 driver.FindElement(By.Id("ContentPlaceHolder1_BoxMail")).Clear();
@@ -102,7 +102,7 @@ namespace IntegrationTests
         {
             foreach (var driver in drivers)
             {
-                driver.Navigate().GoToUrl("https://localhost:44319/registro.aspx");
+                driver.Navigate().GoToUrl(baseURL);
                 driver.FindElement(By.Id("ContentPlaceHolder1_BtnSignUp")).Click();
                 driver.FindElement(By.Id("ContentPlaceHolder1_BoxMail")).Click();
                 driver.FindElement(By.Id("ContentPlaceHolder1_BoxMail")).Clear();
@@ -143,7 +143,7 @@ namespace IntegrationTests
 
             foreach (var driver in drivers)
             {
-                driver.Navigate().GoToUrl("https://localhost:44319/registro.aspx");
+                driver.Navigate().GoToUrl(baseURL);
                 driver.FindElement(By.Id("ContentPlaceHolder1_BtnSignUp")).Click();
                 driver.FindElement(By.Id("ContentPlaceHolder1_BoxMail")).Click();
                 driver.FindElement(By.Id("ContentPlaceHolder1_BoxMail")).Clear();
@@ -182,7 +182,7 @@ namespace IntegrationTests
         {
             foreach (var driver in drivers)
             {
-                driver.Navigate().GoToUrl("https://localhost:44319/registro.aspx");
+                driver.Navigate().GoToUrl(baseURL);
                 driver.FindElement(By.Id("ContentPlaceHolder1_BtnSignUp")).Click();
                 driver.FindElement(By.Id("ContentPlaceHolder1_BtnCancel")).Click();
                 try
@@ -202,7 +202,7 @@ namespace IntegrationTests
         {
             foreach (var driver in drivers)
             {
-                driver.Navigate().GoToUrl("https://localhost:44319/registro.aspx");
+                driver.Navigate().GoToUrl(baseURL);
                 driver.FindElement(By.Id("ContentPlaceHolder1_BtnSignUp")).Click();
                 driver.FindElement(By.Id("ContentPlaceHolder1_BoxMail")).Click();
                 driver.FindElement(By.Id("ContentPlaceHolder1_BoxMail")).Clear();
