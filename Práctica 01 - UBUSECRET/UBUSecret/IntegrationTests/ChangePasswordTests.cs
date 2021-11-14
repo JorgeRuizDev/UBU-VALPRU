@@ -147,14 +147,6 @@ namespace IntegrationTests
             {
                 verificationErrors.Append(e.Message);
             }
-            try
-            {
-                Assert.AreEqual("Ubusecret", driver.FindElement(By.LinkText("Ubusecret")).Text);
-            }
-            catch (Exception e)
-            {
-                verificationErrors.Append(e.Message);
-            }
             driver.FindElement(By.Id("LblUsuario")).Click();
             driver.FindElement(By.Id("ContentPlaceHolder1_HyperLink1")).Click();
             driver.FindElement(By.Id("ContentPlaceHolder1_BoxMail")).Clear();

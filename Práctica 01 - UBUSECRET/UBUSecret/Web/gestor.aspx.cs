@@ -25,8 +25,13 @@ namespace Web
 
             ICapaDatos bd = Data.DBPruebas.ObtenerInstacia();
 
-            var usuarios = bd.LeerUsuarios();
+            foreach(var log in bd.LeerLogs())
+            {
+                LogBody.Text += log.ToString();
+            }
 
+            var usuarios = bd.LeerUsuarios();
+                
             foreach (var u in usuarios)
             {
                 // Crea la fila de cada uno de los usuarios con el dropdown para modificar el rol

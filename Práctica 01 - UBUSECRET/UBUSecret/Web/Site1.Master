@@ -14,8 +14,8 @@
     <form id="form1" runat="server" >
     <nav runat="server" class="navbar navbar-light bg-gray-200 rounded-b-xl" id="Nav">
       <a class="navbar-brand" href="/">
-        <img src="https://www.forocoches.com/image/top_c1_hd.png" width="60" height="60" class="d-inline-block align-top" alt="">
-        Ubusecret
+        
+        🕵️‍♂️Ubusecret
       </a>
       <div class="flex flex-row justify-end space-x-6" Visible="False">
         <asp:HyperLink ID="Admin" runat="server" href="gestor.aspx">

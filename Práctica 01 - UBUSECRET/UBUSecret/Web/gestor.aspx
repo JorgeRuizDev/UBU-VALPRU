@@ -25,5 +25,10 @@
 
 
         </div>
+        <hr class="w-full h-1" />
+        <h3>Log del Sistema:</h3>
+        <section>
+            <asp:Label ID="LogBody" runat="server" Text=""></asp:Label>
+        </section>
     </div>
 </asp:Content>

@@ -76,8 +76,8 @@ namespace Web
                     ErrPassw.Visible = true;
                     return;
                 }
-                
-                
+
+                Logger.Log(u + " ha iniciado sesión.", Level.INFO);
                 Session["usuario"] = u;
                 ComprobarSesion();
                 
