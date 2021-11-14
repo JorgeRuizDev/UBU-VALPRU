@@ -24,5 +24,14 @@ namespace Util.Tests
             Assert.IsTrue(Validar.Password("Hola12"));
             Assert.IsTrue(Validar.Password("Hola123"));
         }
+
+        [TestMethod()]
+        public void EmailTest()
+        {
+            Assert.IsFalse(Validar.Email("asdfasdf"));
+            Assert.IsTrue(Validar.Email("dfasdfasfas@hola.es"));
+            Assert.IsFalse(Validar.Email(""));
+            Assert.IsFalse(Validar.Email(null));
+        }
     }
 }
