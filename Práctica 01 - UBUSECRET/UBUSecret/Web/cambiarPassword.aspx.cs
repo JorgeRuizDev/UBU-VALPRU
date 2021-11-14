@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using Util;
 using Interfaces;
 using Data;
+using UBUSecret;
 namespace Web
 {
     public partial class WebForm2 : System.Web.UI.Page
@@ -46,10 +47,11 @@ namespace Web
                     ErrPassw.Visible = true;
                     return;
                 }
-
-
+                Logger.Log(usuario + " ha cambiado la contraseña", Level.INFO);
+                
                 Session["usuario"] = usuario;
                 Server.Transfer("default.aspx", true);
+                return;
             }
         }
 

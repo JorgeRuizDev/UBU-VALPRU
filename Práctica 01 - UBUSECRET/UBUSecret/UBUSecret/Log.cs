@@ -21,5 +21,10 @@ namespace UBUSecret
         public DateTime Timestamp { get => timestamp; set => timestamp = value; }
         public string Entry { get => entry; set => entry = value; }
         public Level Level { get => level; set => level = value; }
+
+        public override string ToString()
+        {
+            return String.Format("[{0} - {1}] {2}", level, timestamp, entry);
+        }
     }
 }
