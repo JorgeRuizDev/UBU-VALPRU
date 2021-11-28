@@ -6,7 +6,6 @@ namespace Interfaces
 {
     public interface ICapaDatos
     {
-        Usuario LeerUsuario(int id);
         Usuario LeerUsuario(string email);
 
         Usuario BorrarUsuario(string email);
@@ -15,18 +14,18 @@ namespace Interfaces
 
         List<Usuario> LeerUsuariosDeshabilitados();
 
+        List<Usuario> LeerUsuariosInactivos();
+
+        List<Usuario> LeerUsuariosActivos();
+
         List<Usuario> LeerUsuarios();
 
         Secreto BorrarSecreto(int idSecreto);
         bool InsertarSecreto(Secreto secreto);
 
+        Secreto LeerSecreto(int idSecreto);
         List<Secreto> LeerSecretosRecibidos(Usuario usuario);
         List<Secreto> LeerSecretosEnviados(Usuario usuario);
-
-
-        void AñadirLog(Log Log);
-        List<Log> LeerLogs();
-        void ResetLogs();
 
         void Reset();
     }
