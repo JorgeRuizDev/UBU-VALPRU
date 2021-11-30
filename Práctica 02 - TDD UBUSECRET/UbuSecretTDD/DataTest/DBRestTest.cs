@@ -47,6 +47,7 @@ namespace DataTest
             Assert.IsNotNull(paco);
             Assert.IsTrue(datos.InsertarUsuario(paco));
             Assert.AreEqual(paco, datos.LeerUsuario("paco@ubusecret.es"));
+            Assert.IsFalse(datos.InsertarUsuario(paco));
 
         }
 
@@ -65,8 +66,71 @@ namespace DataTest
             Assert.AreEqual(0, datos.LeerUsuarios().Count);
             Assert.IsNotNull(pepe);
             Assert.IsTrue(datos.InsertarUsuario(pepe));
+            Assert.IsTrue(datos.InsertarUsuario(paco));
+            var usuarios = datos.LeerUsuarios();
+            Assert.AreEqual(2, usuarios.Count);
+            Assert.IsTrue(usuarios.Contains(pepe));
+            Assert.IsTrue(usuarios.Contains(paco));
+        }
+
+        [TestMethod]
+        public void ListarUsuariosActivosTest()
+        {
+            pepe.CambiarPassword("Usuario1234", "Usuario1234_", "Usuario1234_");
+            paco.CambiarPassword("Usuario1234", "Usuario1234_", "Usuario1234_");
+            Assert.AreEqual(0, datos.LeerUsuariosActivos().Count);
+
+            Assert.IsTrue(datos.InsertarUsuario(pepe));
             Assert.AreEqual(1, datos.LeerUsuarios().Count);
-            Assert.AreEqual(pepe, datos.LeerUsuarios()[0]);
+            Assert.AreEqual(0, datos.LeerUsuariosActivos().Count);
+
+            // Aprovechamos que no tenemos método UpdateUser()
+            pepe.Rol = Rol.Administrador;
+
+            
+            Assert.AreEqual(1, datos.LeerUsuariosActivos().Count);
+
+            paco.Rol = Rol.Usuario;
+
+            Assert.IsTrue(datos.InsertarUsuario(paco));
+
+            var usuarios = datos.LeerUsuariosActivos();
+
+            Assert.AreEqual(2, usuarios.Count);
+
+            Assert.IsTrue(usuarios.Contains(pepe));
+            Assert.IsTrue(usuarios.Contains(paco));
+        }
+
+        [TestMethod]
+        public void ListarUsuariosInactivosTest()
+        {
+
+            Assert.AreEqual(0, datos.LeerUsuariosInactivos().Count);
+
+            Assert.IsTrue(datos.InsertarUsuario(pepe));
+            Assert.IsTrue(datos.InsertarUsuario(paco));
+
+            Assert.AreEqual(2, datos.LeerUsuariosInactivos().Count);
+
+            paco.CambiarPassword("Usuario1234", "Usuario1234_", "Usuario1234_");
+            pepe.Rol = Rol.Administrador;
+
+            Assert.AreEqual(2, datos.LeerUsuariosInactivos().Count);
+
+            pepe.CambiarPassword("Usuario1234", "Usuario1234_", "Usuario1234_");
+            paco.Rol = Rol.Administrador;
+
+            var usuarios = datos.LeerUsuariosInactivos();
+
+            Assert.AreEqual(0, usuarios.Count);
+
+            // Bloqueamos a ambos usuarios
+            pepe.Rol = Rol.Bloqueado;
+            paco.Rol = Rol.Bloqueado;
+
+            Assert.AreEqual(2, datos.LeerUsuariosInactivos().Count);
+
         }
     }
 }

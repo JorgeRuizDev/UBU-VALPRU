@@ -7,7 +7,7 @@ using Util;
 namespace UBUSecret
 {
 
-    public enum Rol {Administrador = 1, Usuario = 2, Deshabilitado =3 }
+    public enum Rol {Administrador = 1, Usuario = 2, Deshabilitado =3, Bloqueado = 4 };
 
     public class Usuario
     {
@@ -60,10 +60,19 @@ namespace UBUSecret
 
         public bool EsValido()
         {
-       
-            return previousPasswordHash != null && Rol != Rol.Deshabilitado;
+            return !EsInactivo();
         }
 
+
+        public bool EsDeshabilitado()
+        {
+            return previousPasswordHash == null || Rol == Rol.Deshabilitado;
+        }
+
+        public bool EsInactivo()
+        {
+            return EsDeshabilitado() || Rol == Rol.Bloqueado;
+        }
 
         public bool ComprobarPassword(string password){
 

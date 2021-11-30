@@ -69,12 +69,31 @@ namespace Data
 
         public List<Usuario> LeerUsuariosInactivos()
         {
-            throw new NotImplementedException();
+
+            var usuarios = new List<Usuario>();
+
+            foreach (var usuario in tblUsuarios.Values)
+            {
+                if (usuario.EsInactivo())
+                {
+                    usuarios.Add(usuario);
+                }
+            }
+            return usuarios;
         }
 
         public List<Usuario> LeerUsuariosActivos()
         {
-            throw new NotImplementedException();
+            var usuarios = new List<Usuario>();
+
+            foreach (var usuario in tblUsuarios.Values)
+            {
+                if (usuario.EsValido())
+                {
+                    usuarios.Add(usuario);
+                }
+            }
+            return usuarios;
         }
 
         public Secreto BorrarSecreto(int idSecreto)
