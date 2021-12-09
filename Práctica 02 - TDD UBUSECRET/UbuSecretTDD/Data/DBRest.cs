@@ -53,9 +53,21 @@ namespace Data
 
         public bool InsertarUsuario(Usuario usuario)
         {
+            
             if (usuario != null)
             {
-                tblUsuarios.Add(usuario.Id, usuario);
+                try
+                {
+                    tblUsuarios.Add(usuario.Id, usuario);
+
+                }
+                catch (ArgumentException)
+                {
+                    return false;
+                }catch(Exception e)
+                {
+                    throw e;
+                }
                 return true;
             }
 
