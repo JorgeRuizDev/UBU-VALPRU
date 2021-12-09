@@ -96,11 +96,12 @@ namespace Data
             return usuarios;
         }
 
+        
         public Secreto BorrarSecreto(int idSecreto)
         {
             throw new NotImplementedException();
         }
-
+        
         public bool InsertarSecreto(Secreto secreto)
         {
             throw new NotImplementedException();
@@ -120,7 +121,7 @@ namespace Data
         {
             throw new NotImplementedException();
         }
-
+        
         public List<Usuario> LeerUsuarios()
         {
             var usuarios = new List<Usuario>();

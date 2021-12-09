@@ -1,5 +1,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Data;
+using System.Collections.Generic;
 using Interfaces;
 using UBUSecret;
 
@@ -132,5 +133,54 @@ namespace DataTest
             Assert.AreEqual(2, datos.LeerUsuariosInactivos().Count);
 
         }
+
+        [TestMethod]
+        public void BorrarSecretoTest()
+        {
+            LinkedList<Usuario> receptores = new LinkedList<Usuario>();
+            receptores.AddLast(paco);
+            Secreto secreto = new Secreto(pepe,receptores,"prueba","hola","pepito");
+            Assert.IsTrue(datos.InsertarSecreto(secreto));
+            Assert.AreEqual(secreto,datos.BorrarSecreto(secreto.IdSecreto));
+        }
+        
+
+
+
+
+
+
+
+
+        /*
+        [TestMethod]
+        public void InsertarSecretoTest()
+        {
+
+
+        }
+
+        [TestMethod]
+        public void LeerSecretoTest()
+        {
+
+
+        }
+
+        [TestMethod]
+        public void LeerSecretosRecibidosTest()
+        {
+
+
+        }
+
+        [TestMethod]
+        public void LeerSecretosEnviadosTest()
+        {
+
+
+        }
+
+        */
     }
 }
