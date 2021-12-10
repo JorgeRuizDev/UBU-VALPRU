@@ -12,7 +12,9 @@ namespace DataTest
         ICapaDatos datos = DBRest.ObtenerInstancia();
         Usuario pepe = null;
         Usuario paco = null;
-        
+        Secreto secreto = null;
+        Secreto secretoDos = null;
+
 
         [TestInitialize]
         public void Reset()
@@ -20,6 +22,10 @@ namespace DataTest
             datos.Reset();
             pepe = CrearUsuario("Pepe", "Pepe", "pepe@ubusecret.es");
             paco = CrearUsuario("Paco", "Paco", "paco@ubusecret.es");
+            LinkedList<Usuario> receptores = new LinkedList<Usuario>();
+            receptores.AddLast(paco);
+            secreto = new Secreto(pepe, receptores, "prueba", "hola", "pepito");
+            secretoDos = new Secreto(pepe, receptores, "dos", "dos", "pep");
         }
 
         [TestMethod]
@@ -39,6 +45,15 @@ namespace DataTest
             LeerUsuariosTest();
             datos.Reset();
             Assert.AreEqual(0, datos.LeerUsuarios().Count);
+            
+            
+            int cont = 0;
+            foreach (var usuario in datos.LeerUsuarios()) 
+            {
+                cont += datos.LeerSecretosEnviados(usuario).Capacity;
+            }
+            Assert.AreEqual(0, cont);
+
         }
 
         [TestMethod]
@@ -135,52 +150,64 @@ namespace DataTest
         }
 
         [TestMethod]
-        public void BorrarSecretoTest()
-        {
-            LinkedList<Usuario> receptores = new LinkedList<Usuario>();
-            receptores.AddLast(paco);
-            Secreto secreto = new Secreto(pepe,receptores,"prueba","hola","pepito");
-            Assert.IsTrue(datos.InsertarSecreto(secreto));
-            Assert.AreEqual(secreto,datos.BorrarSecreto(secreto.IdSecreto));
-        }
-        
-
-
-
-
-
-
-
-
-        /*
-        [TestMethod]
         public void InsertarSecretoTest()
         {
-
-
+            Assert.IsNull(datos.LeerSecreto(secreto.IdSecreto));
+            Assert.IsTrue(datos.InsertarSecreto(secreto));
+            Assert.AreEqual(datos.LeerSecreto(secreto.IdSecreto), secreto);
+            Assert.IsFalse(datos.InsertarSecreto(secreto));
         }
+
 
         [TestMethod]
         public void LeerSecretoTest()
         {
-
+            Assert.IsNull(datos.LeerSecreto(secretoDos.IdSecreto));
+            Assert.IsNotNull(secreto);
+            Assert.IsTrue(datos.InsertarSecreto(secretoDos));
+            Assert.AreEqual(secretoDos, datos.LeerSecreto(secretoDos.IdSecreto));
 
         }
+
+
+        [TestMethod]
+        public void BorrarSecretoTest()
+        {
+            LeerSecretoTest();
+            Assert.IsNotNull(datos.LeerSecreto(secretoDos.IdSecreto));
+            Assert.AreEqual(secretoDos, datos.BorrarSecreto(secretoDos.IdSecreto));
+            Assert.IsNull(datos.LeerSecreto(secretoDos.IdSecreto));
+            Assert.IsNull(datos.BorrarSecreto(secretoDos.IdSecreto));
+        }
+
 
         [TestMethod]
         public void LeerSecretosRecibidosTest()
         {
-
-
+            LeerSecretoTest();
+            Assert.AreEqual(1, datos.LeerSecretosRecibidos(paco).Count);
+            Assert.IsTrue(datos.LeerSecretosRecibidos(paco).Contains(secretoDos));
+            datos.BorrarSecreto(secretoDos.IdSecreto);
+            Assert.AreEqual(0, datos.LeerSecretosRecibidos(paco).Count);
+            Assert.AreEqual(0, datos.LeerSecretosRecibidos(pepe).Count);
         }
+
 
         [TestMethod]
         public void LeerSecretosEnviadosTest()
         {
-
+            LeerSecretoTest();
+            InsertarSecretoTest();
+            Assert.AreEqual(2, datos.LeerSecretosEnviados(pepe).Count);
+            Assert.IsTrue(datos.LeerSecretosEnviados(pepe).Contains(secretoDos));
+            Assert.IsTrue(datos.LeerSecretosEnviados(pepe).Contains(secreto));
+            datos.BorrarSecreto(secretoDos.IdSecreto);
+            datos.BorrarSecreto(secreto.IdSecreto);
+            Assert.AreEqual(0, datos.LeerSecretosEnviados(paco).Count);
+            Assert.AreEqual(0, datos.LeerSecretosEnviados(pepe).Count);
 
         }
 
-        */
+
     }
 }

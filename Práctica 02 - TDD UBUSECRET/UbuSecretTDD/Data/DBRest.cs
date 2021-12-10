@@ -93,6 +93,11 @@ namespace Data
             }
             return usuarios;
         }
+        /*
+
+         
+         */
+
 
         public List<Usuario> LeerUsuariosActivos()
         {
@@ -111,27 +116,82 @@ namespace Data
         
         public Secreto BorrarSecreto(int idSecreto)
         {
-            throw new NotImplementedException();
+            foreach (var secreto in tblSecretos.Values)
+            {
+                if (secreto.IdSecreto == idSecreto)
+                {
+                    tblSecretos.Remove(idSecreto);
+                    return secreto;
+                }
+            }
+            return null;
         }
-        
+
         public bool InsertarSecreto(Secreto secreto)
         {
-            throw new NotImplementedException();
+            if (secreto != null)
+            {
+                try
+                {
+                    tblSecretos.Add(secreto.IdSecreto, secreto);
+
+                }
+                catch (ArgumentException)
+                {
+                    return false;
+                }
+                catch (Exception e)
+                {
+                    throw e;
+                }
+                return true;
+            }
+
+            return false;
         }
+
+        /*
+
+         
+         */
+
 
         public Secreto LeerSecreto(int idSecreto)
         {
-            throw new NotImplementedException();
+            foreach (var secreto in tblSecretos.Values)
+            {
+                if (secreto.IdSecreto.Equals(idSecreto))
+                {
+                    return secreto;
+                }
+            }
+            return null;
         }
 
         public List<Secreto> LeerSecretosRecibidos(Usuario usuario)
         {
-            throw new NotImplementedException();
+            List<Secreto> secretos = new List<Secreto>();
+            foreach (var secreto in tblSecretos.Values)
+            {
+                if (secreto.Receptores.Contains(usuario))
+                {
+                    secretos.Add(secreto);
+                }
+            }
+            return secretos;
         }
 
         public List<Secreto> LeerSecretosEnviados(Usuario usuario)
         {
-            throw new NotImplementedException();
+            List<Secreto> secretos = new List<Secreto>();
+            foreach (var secreto in tblSecretos.Values)
+            {
+                if (secreto.Remitente==usuario)
+                {
+                    secretos.Add(secreto);
+                }
+            }
+            return secretos;
         }
         
         public List<Usuario> LeerUsuarios()
