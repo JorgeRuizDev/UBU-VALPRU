@@ -150,10 +150,6 @@ namespace Data
             return false;
         }
 
-        /*
-
-         
-         */
 
 
         public Secreto LeerSecreto(int idSecreto)
