@@ -38,17 +38,17 @@ namespace DataTest
         {
             return new Usuario(nombre, apellidos, email, "123456789", "Usuario1234");
         }
-        
+
         [TestMethod]
         public void RestTest()
         {
             LeerUsuariosTest();
             datos.Reset();
             Assert.AreEqual(0, datos.LeerUsuarios().Count);
-            
-            
+
+
             int cont = 0;
-            foreach (var usuario in datos.LeerUsuarios()) 
+            foreach (var usuario in datos.LeerUsuarios())
             {
                 cont += datos.LeerSecretosEnviados(usuario).Capacity;
             }
@@ -58,7 +58,7 @@ namespace DataTest
 
         [TestMethod]
         public void InsertarUsuarioTest()
-        {        
+        {
             Assert.IsNull(datos.LeerUsuario("paco@ubusecret.es"));
             Assert.IsNotNull(paco);
             Assert.IsTrue(datos.InsertarUsuario(paco));
@@ -103,7 +103,7 @@ namespace DataTest
             // Aprovechamos que no tenemos método UpdateUser()
             pepe.Rol = Rol.Administrador;
 
-            
+
             Assert.AreEqual(1, datos.LeerUsuariosActivos().Count);
 
             paco.Rol = Rol.Usuario;
@@ -205,6 +205,43 @@ namespace DataTest
             datos.BorrarSecreto(secreto.IdSecreto);
             Assert.AreEqual(0, datos.LeerSecretosEnviados(paco).Count);
             Assert.AreEqual(0, datos.LeerSecretosEnviados(pepe).Count);
+
+        }
+
+        [TestMethod]
+        public void BorrarUsuarioTest()
+        {
+            InsertarUsuarioTest();
+            Assert.AreEqual(paco, datos.BorrarUsuario(paco.Email));
+            Assert.IsNull(datos.LeerUsuario(paco.Email));
+            Assert.IsNull(datos.BorrarUsuario(paco.Email));
+        }
+
+
+        [TestMethod]
+        public void LeerUsuariosDeshabilitadosTest() 
+        {
+            InsertarUsuarioTest();
+            datos.InsertarUsuario(pepe);
+
+            paco.Rol = Rol.Deshabilitado;
+            pepe.Rol = Rol.Deshabilitado;
+
+            Assert.IsTrue(paco.EsDeshabilitado());
+            Assert.IsTrue(pepe.EsDeshabilitado());
+
+            Assert.IsTrue(datos.LeerUsuariosDeshabilitados().Contains(paco));
+            Assert.IsTrue(datos.LeerUsuariosDeshabilitados().Contains(pepe));
+
+
+            paco.Rol = Rol.Bloqueado;
+            pepe.Rol = Rol.Bloqueado;
+
+            Assert.IsTrue(paco.EsInactivo());
+            Assert.IsTrue(pepe.EsInactivo());
+
+            Assert.IsFalse(datos.LeerUsuariosDeshabilitados().Contains(paco));
+            Assert.IsFalse(datos.LeerUsuariosDeshabilitados().Contains(pepe));
 
         }
 

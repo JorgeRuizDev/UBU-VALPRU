@@ -48,7 +48,20 @@ namespace Data
 
         public Usuario BorrarUsuario(string email)
         {
-            throw new NotImplementedException();
+            if (email == null)
+            {
+                return null;
+            }
+
+            foreach (var usuario in tblUsuarios.Values)
+            {
+                if (usuario.Email.Equals(email))
+                {
+                    tblUsuarios.Remove(usuario.Id);
+                    return usuario;
+                }
+            }
+            return null;
         }
 
         public bool InsertarUsuario(Usuario usuario)
@@ -76,7 +89,16 @@ namespace Data
 
         public List<Usuario> LeerUsuariosDeshabilitados()
         {
-            throw new NotImplementedException();
+            var usuarios = new List<Usuario>();
+
+            foreach (var usuario in tblUsuarios.Values)
+            {
+                if (usuario.Rol==Rol.Deshabilitado)
+                {
+                    usuarios.Add(usuario);
+                }
+            }
+            return usuarios;
         }
 
         public List<Usuario> LeerUsuariosInactivos()
@@ -93,11 +115,6 @@ namespace Data
             }
             return usuarios;
         }
-        /*
-
-         
-         */
-
 
         public List<Usuario> LeerUsuariosActivos()
         {
@@ -149,11 +166,6 @@ namespace Data
 
             return false;
         }
-
-        /*
-
-         
-         */
 
 
         public Secreto LeerSecreto(int idSecreto)
