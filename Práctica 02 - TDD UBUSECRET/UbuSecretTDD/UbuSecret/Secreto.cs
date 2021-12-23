@@ -85,6 +85,9 @@ namespace UBUSecret
             else { return false; }
         }
 
-
+        public override string ToString()
+        {
+            return String.Format("Id: {0}", this.IdSecreto);
+        }
     }
 }

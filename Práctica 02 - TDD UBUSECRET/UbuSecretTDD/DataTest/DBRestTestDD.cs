@@ -13,8 +13,8 @@ namespace DataTest
         ICapaDatos datos = DBRest.ObtenerInstancia();
         static Usuario pepe = null;
         static Usuario paco = null;
-        Secreto secreto = null;
-        Secreto secretoDos = null;
+        static Secreto secretoUno = null;
+        static Secreto secretoDos = null;
 
 
         [TestInitialize]
@@ -25,8 +25,12 @@ namespace DataTest
             paco = CrearUsuario("Paco", "Paco", "paco@ubusecret.es");
             LinkedList<Usuario> receptores = new LinkedList<Usuario>();
             receptores.AddLast(paco);
-            secreto = new Secreto(pepe, receptores, "prueba", "hola", "pepito");
-            secretoDos = new Secreto(pepe, receptores, "dos", "dos", "pep");
+            secretoUno = CrearSecretoUno(pepe,paco);
+            secretoDos = CrearSecretoDos(pepe,paco);
+            Assert.IsNotNull(secretoUno);
+            Assert.IsNotNull(secretoDos);
+
+
         }
 
         [TestMethod]
@@ -40,6 +44,25 @@ namespace DataTest
             return new Usuario(nombre, apellidos, email, "123456789", "Usuario1234");
         }
 
+        static public Secreto CrearSecretoUno(Usuario pepe, Usuario paco) 
+        {
+            //Usuario pepe = CrearUsuario("Pepe", "Pepe", "pepe@ubusecret.es");
+            //Usuario paco = CrearUsuario("Paco", "Paco", "paco@ubusecret.es");
+            LinkedList<Usuario> receptores = new LinkedList<Usuario>();
+            receptores.AddLast(paco);
+            return new Secreto(pepe, receptores, "prueba", "hola", "pepito");
+        }
+
+        static public Secreto CrearSecretoDos(Usuario pepe, Usuario paco)
+        {
+
+            LinkedList<Usuario> receptores = new LinkedList<Usuario>();
+            receptores.AddLast(paco);
+            return new Secreto(pepe, receptores, "dos", "dos", "pep");
+        }
+
+
+
         [TestMethod]
         public void RestTest()
         {
@@ -47,6 +70,10 @@ namespace DataTest
             datos.InsertarUsuario(paco);
             datos.Reset();
             Assert.AreEqual(0, datos.LeerUsuarios().Count);
+            LinkedList<Usuario> receptores = new LinkedList<Usuario>();
+            receptores.AddLast(paco);
+            secretoUno = new Secreto(pepe, receptores, "prueba", "hola", "pepito");
+            secretoDos = new Secreto(pepe, receptores, "dos", "dos", "pep");
 
             int cont = 0;
             foreach (var usuario in datos.LeerUsuarios())
@@ -389,63 +416,221 @@ namespace DataTest
 
         }
 
-        [TestMethod]
-        public void InsertarSecretoTest()
+
+
+
+
+
+        public static IEnumerable<object[]> GetInsertarSecretoData() 
         {
-            Assert.IsNull(datos.LeerSecreto(secreto.IdSecreto));
-            Assert.IsTrue(datos.InsertarSecreto(secreto));
-            Assert.AreEqual(datos.LeerSecreto(secreto.IdSecreto), secreto);
-            Assert.IsFalse(datos.InsertarSecreto(secreto));
+            yield return new object[] { secretoUno, false };
+            yield return new object[] { secretoDos, false };
+        }
+
+        [DataTestMethod]
+        [DynamicData(nameof(GetInsertarSecretoData), DynamicDataSourceType.Method)]
+        public void InsertarSecretoTest(Secreto secreto, bool falla)
+        {
+            try
+            {
+                Assert.IsNull(datos.LeerSecreto(secreto.IdSecreto));
+                Assert.IsTrue(datos.InsertarSecreto(secreto));
+                Assert.AreEqual(datos.LeerSecreto(secreto.IdSecreto), secreto);
+                Assert.IsFalse(datos.InsertarSecreto(secreto));
+            }
+            catch (AssertFailedException e)
+            {
+                Assert.IsTrue(falla);
+            }
         }
 
 
-        [TestMethod]
-        public void LeerSecretoTest()
+        public static IEnumerable<object[]> GetLeerSecretoData()
         {
-            Assert.IsNull(datos.LeerSecreto(secretoDos.IdSecreto));
-            Assert.IsNotNull(secreto);
-            Assert.IsTrue(datos.InsertarSecreto(secretoDos));
-            Assert.AreEqual(secretoDos, datos.LeerSecreto(secretoDos.IdSecreto));
+            yield return new object[] { secretoUno, false };
+            yield return new object[] { secretoDos, false };
+        }
 
+        [DataTestMethod]
+        [DynamicData(nameof(GetLeerSecretoData), DynamicDataSourceType.Method)]
+        public void LeerSecretoTest(Secreto secreto, bool falla)
+        {
+            try
+            {
+                Console.WriteLine(secreto.ToString());
+                Assert.IsNull(datos.LeerSecreto(secreto.IdSecreto));
+                Assert.IsNotNull(secreto);
+                Assert.IsTrue(datos.InsertarSecreto(secreto));
+                Assert.AreEqual(secreto, datos.LeerSecreto(secreto.IdSecreto));
+            }
+            catch (AssertFailedException e)
+            {
+                Assert.IsTrue(falla);
+            }
+        }
+
+        public static IEnumerable<object[]> GetBorrarSecretoData()
+        {
+            Usuario pepe = CrearUsuario("Pepe", "Pepe", "pepe@ubusecret.es");
+            Usuario paco = CrearUsuario("Paco", "Paco", "paco@ubusecret.es");
+
+            yield return new object[] { CrearSecretoUno(pepe, paco), false };
+            yield return new object[] { CrearSecretoDos(pepe, paco), false };
+            yield return new object[] { null, true };
+        }
+
+        [DataTestMethod]
+        [DynamicData(nameof(GetBorrarSecretoData), DynamicDataSourceType.Method)]
+        public void BorrarSecretoTest(Secreto secreto, bool falla)
+        {
+            try
+            {
+                datos.InsertarSecreto(secreto);
+                Assert.IsNotNull(datos.LeerSecreto(secreto.IdSecreto));
+                Assert.AreEqual(secreto, datos.BorrarSecreto(secreto.IdSecreto));
+                Assert.IsNull(datos.LeerSecreto(secreto.IdSecreto));
+                Assert.IsNull(datos.BorrarSecreto(secreto.IdSecreto));
+            }
+            catch (Exception e)
+            {
+                Assert.IsTrue(falla);
+            }
         }
 
 
-        [TestMethod]
-        public void BorrarSecretoTest()
+
+
+
+
+
+
+        public static IEnumerable<object[]> GetLeerSecretosRecibidosTestData()
         {
-            LeerSecretoTest();
-            Assert.IsNotNull(datos.LeerSecreto(secretoDos.IdSecreto));
-            Assert.AreEqual(secretoDos, datos.BorrarSecreto(secretoDos.IdSecreto));
-            Assert.IsNull(datos.LeerSecreto(secretoDos.IdSecreto));
-            Assert.IsNull(datos.BorrarSecreto(secretoDos.IdSecreto));
+            Usuario pepe = CrearUsuario("Pepe", "Pepe", "pepe@ubusecret.es");
+            Usuario paco = CrearUsuario("Paco", "Paco", "paco@ubusecret.es");
+            yield return new object[] { CrearSecretoUno(pepe, paco),paco,pepe, false };
+            yield return new object[] { CrearSecretoDos(pepe, paco),paco,pepe, false };
+            yield return new object[] { null, paco, pepe, true };
+        }
+
+        [DataTestMethod]
+        [DynamicData(nameof(GetLeerSecretosRecibidosTestData), DynamicDataSourceType.Method)]
+        public void LeerSecretosRecibidosTest(Secreto secreto, Usuario receptor, Usuario owner ,bool falla)
+        {
+            try
+            {
+                datos.InsertarSecreto(secreto);
+                Assert.AreEqual(1, datos.LeerSecretosRecibidos(receptor).Count);
+                Assert.IsTrue(datos.LeerSecretosRecibidos(receptor).Contains(secreto));
+                datos.BorrarSecreto(secreto.IdSecreto);
+                Assert.AreEqual(0, datos.LeerSecretosRecibidos(receptor).Count);
+                Assert.AreEqual(0, datos.LeerSecretosRecibidos(owner).Count);
+
+            }
+            catch (Exception e)
+            {
+                Assert.IsTrue(falla);
+            }
         }
 
 
-        [TestMethod]
-        public void LeerSecretosRecibidosTest()
+
+
+        public static IEnumerable<object[]> GetLeerSecretosEnviadosTestData()
         {
-            LeerSecretoTest();
-            Assert.AreEqual(1, datos.LeerSecretosRecibidos(paco).Count);
-            Assert.IsTrue(datos.LeerSecretosRecibidos(paco).Contains(secretoDos));
-            datos.BorrarSecreto(secretoDos.IdSecreto);
-            Assert.AreEqual(0, datos.LeerSecretosRecibidos(paco).Count);
-            Assert.AreEqual(0, datos.LeerSecretosRecibidos(pepe).Count);
+            Usuario pepe = CrearUsuario("Pepe", "Pepe", "pepe@ubusecret.es");
+            Usuario paco = CrearUsuario("Paco", "Paco", "paco@ubusecret.es");
+            yield return new object[] { CrearSecretoUno(pepe, paco), paco, pepe, false };
+            yield return new object[] { CrearSecretoDos(pepe, paco), paco, pepe, false };
+            yield return new object[] { null, paco, pepe, true };
+        }
+
+        [DataTestMethod]
+        [DynamicData(nameof(GetLeerSecretosEnviadosTestData), DynamicDataSourceType.Method)]
+        public void LeerSecretosEnviadosTest(Secreto secreto, Usuario receptor, Usuario owner, bool falla)
+        {
+            try
+            {
+                datos.InsertarSecreto(secreto);
+                Assert.AreEqual(1, datos.LeerSecretosEnviados(owner).Count);
+                Assert.IsTrue(datos.LeerSecretosEnviados(owner).Contains(secreto));
+                datos.BorrarSecreto(secreto.IdSecreto);
+                Assert.AreEqual(0, datos.LeerSecretosEnviados(owner).Count);
+                Assert.AreEqual(0, datos.LeerSecretosEnviados(receptor).Count);
+            }
+            catch (Exception e)
+            {
+                Assert.IsTrue(falla);
+            }
         }
 
 
-        [TestMethod]
-        public void LeerSecretosEnviadosTest()
-        {
-            LeerSecretoTest();
-            InsertarSecretoTest();
-            Assert.AreEqual(2, datos.LeerSecretosEnviados(pepe).Count);
-            Assert.IsTrue(datos.LeerSecretosEnviados(pepe).Contains(secretoDos));
-            Assert.IsTrue(datos.LeerSecretosEnviados(pepe).Contains(secreto));
-            datos.BorrarSecreto(secretoDos.IdSecreto);
-            datos.BorrarSecreto(secreto.IdSecreto);
-            Assert.AreEqual(0, datos.LeerSecretosEnviados(paco).Count);
-            Assert.AreEqual(0, datos.LeerSecretosEnviados(pepe).Count);
 
+
+        public static IEnumerable<object[]> GetBorrarUsuarioTestData()
+        {
+            Usuario pepe = CrearUsuario("Pepe", "Pepe", "pepe@ubusecret.es");
+            Usuario paco = CrearUsuario("Paco", "Paco", "paco@ubusecret.es");
+            yield return new object[] { pepe, "pepe@ubusecret.es", false };
+            yield return new object[] { paco, "paco@ubusecret.es", false };
+            yield return new object[] { null, "paco@ubusecret.es", true };
+            yield return new object[] { null, "pepe@ubusecret.es", true };
+
+        }
+
+        [DataTestMethod]
+        [DynamicData(nameof(GetBorrarUsuarioTestData), DynamicDataSourceType.Method)]
+        public void BorrarUsuarioTest(Usuario usuario, String email, bool falla)
+        {
+            try
+            {
+                datos.InsertarUsuario(usuario);
+                Assert.AreEqual(usuario, datos.BorrarUsuario(email));
+                Assert.IsNull(datos.LeerUsuario(email));
+                Assert.IsNull(datos.BorrarUsuario(email));
+            }
+            catch (Exception e)
+            {
+                Assert.IsTrue(falla);
+            }
+        }
+
+
+
+        public static IEnumerable<object[]> GetLeerUsuariosDeshabilitadosTestData()
+        {
+            Usuario pepe = CrearUsuario("Pepe", "Pepe", "pepe@ubusecret.es");
+            Usuario paco = CrearUsuario("Paco", "Paco", "paco@ubusecret.es");
+            yield return new object[] { pepe, false };
+            yield return new object[] { paco, false };
+            yield return new object[] { null, true };
+
+        }
+
+        [DataTestMethod]
+        [DynamicData(nameof(GetLeerUsuariosDeshabilitadosTestData), DynamicDataSourceType.Method)]
+        public void LeerUsuariosDeshabilitadosTest(Usuario usuario, bool falla)
+        {
+            try
+            {
+                datos.InsertarUsuario(usuario);
+
+                usuario.Rol = Rol.Deshabilitado;
+
+                Assert.IsTrue(usuario.EsDeshabilitado());
+
+                Assert.IsTrue(datos.LeerUsuariosDeshabilitados().Contains(usuario));
+
+                usuario.Rol = Rol.Bloqueado;
+
+                Assert.IsTrue(usuario.EsInactivo());
+
+                Assert.IsFalse(datos.LeerUsuariosDeshabilitados().Contains(usuario));
+            }
+            catch (Exception e)
+            {
+                Assert.IsTrue(falla);
+            }
         }
 
 
