@@ -125,6 +125,58 @@ namespace Data
                 return "400";
             }
         }
-        
+
+
+        public string GetActivados()
+        {
+            return JsonConvert.SerializeObject(datos.LeerUsuariosActivos());
+        }
+
+
+        public string DeleteSecreto(int id)
+        {
+            Secreto s = datos.BorrarSecreto(id);
+            if (s == null)
+            {
+                return "404";
+            }
+            return JsonConvert.SerializeObject(s, Formatting.Indented);
+        }
+
+
+
+
+        public string DeleteUsuario(string email)
+        {
+            Usuario u = datos.BorrarUsuario(email);
+            if (u == null)
+            {
+                return "404";
+            }
+            return JsonConvert.SerializeObject(u, Formatting.Indented);
+        }
+
+
+        public string GetRecibidos(string emailUsuario)
+        {
+            return JsonConvert.SerializeObject(datos.LeerSecretosRecibidos(datos.LeerUsuario(emailUsuario)));
+        }
+
+
+        public string GetDesautorizados()
+        {
+            return JsonConvert.SerializeObject(datos.LeerUsuariosDeshabilitados());
+
+        }
+
+
+        public string GetEnviados(string emailUsuario)
+        {
+            return JsonConvert.SerializeObject(datos.LeerSecretosEnviados(datos.LeerUsuario(emailUsuario)));
+
+        }
+
+
+
     }
 }

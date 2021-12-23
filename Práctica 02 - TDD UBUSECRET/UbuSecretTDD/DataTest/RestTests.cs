@@ -35,7 +35,7 @@ namespace DataTest
         }
 
         [TestMethod()]
-        public void GetSecretoTest()
+        public Secreto GetSecretoTest()
         {
             Assert.AreEqual("404", api.GetSecreto(-1));
 
@@ -51,6 +51,7 @@ namespace DataTest
             Assert.AreEqual("Este es el mensaje", s.Mensaje);
             Assert.IsTrue(s.Emails.Contains("paco@ubusecret.es"));
             Assert.IsTrue(s.Emails.Contains("pepe@ubusecret.es"));
+            return s;
             // No comprobamos la fecha por que la desconocemos. 
         }
 
@@ -92,6 +93,33 @@ namespace DataTest
         }
 
         [TestMethod()]
+        public void GetActiveTest()
+        {
+            string resJson = api.GetActivados();
+
+            List<Usuario> res = JsonConvert.DeserializeObject<List<Usuario>>(resJson);
+            
+            foreach (var u in res)
+            {
+                Assert.IsTrue(u.Rol == Rol.Administrador || u.Rol == Rol.Usuario);
+            }
+        }
+
+
+        [TestMethod()]
+        public void GetUnauthorisedTest()
+        {
+            string resJson = api.GetDesautorizados();
+
+            List<Usuario> res = JsonConvert.DeserializeObject<List<Usuario>>(resJson);
+
+            foreach (var u in res)
+            {
+                Assert.IsTrue(u.Rol == Rol.Deshabilitado);
+            }
+        }
+
+        [TestMethod()]
         public string PutSecretoTest()
         {
             string body = @"{
@@ -114,6 +142,79 @@ namespace DataTest
 
             return api.GetSecreto(res.IdSecreto);
         }
+
+
+        [TestMethod()]
+        public void DeleteSecretoTest()
+        {
+            Secreto insertado = GetSecretoTest();
+
+            
+            Assert.AreEqual("404", api.DeleteSecreto(-1));
+            
+            string res = api.DeleteSecreto(insertado.IdSecreto);
+
+
+            Console.WriteLine(res);
+            Secreto s = JsonConvert.DeserializeObject<Secreto>(res);
+            string res2 = api.GetSecreto(s.IdSecreto);
+            Assert.AreEqual(insertado.RemitenteMail, s.RemitenteMail);
+            Assert.AreEqual(insertado.Alias, s.Alias);
+            Assert.AreEqual(insertado.Titulo, s.Titulo);
+            Assert.AreEqual(insertado.Mensaje, s.Mensaje);
+        }
+
+        [TestMethod()]
+        public void DeleteUserTest()
+        {
+            Assert.AreEqual("404", api.DeleteUsuario("juan@ubusecret.es"));
+
+            string res = api.DeleteUsuario("paco@ubusecret.es");
+            Usuario paco = JsonConvert.DeserializeObject<Usuario>(res);
+
+            Assert.AreEqual(paco.Email, "paco@ubusecret.es");
+            Assert.AreEqual(paco.Nombre, "Paco");
+            Assert.AreEqual(paco.Apellidos, "Paco");
+            Assert.AreEqual(paco.Rol, Rol.Deshabilitado);
+            Assert.AreEqual(paco.Telefono, "123456789");
+        }
+
+
+
+        [TestMethod()]
+        public void GetRecivedTest()
+        {
+            string resJson = api.GetRecibidos("oiwfjpoi@eii.es");
+            List<Secreto> res = JsonConvert.DeserializeObject<List<Secreto>>(resJson);
+            Assert.AreEqual(0,res.Count);
+
+            resJson = api.GetRecibidos("pepe@ubusecret.es");
+            res = JsonConvert.DeserializeObject<List<Secreto>>(resJson);
+            Assert.AreEqual(0,res.Count);
+
+            resJson = api.GetRecibidos("paco@ubusecret.es");
+            res = JsonConvert.DeserializeObject<List<Secreto>>(resJson);
+            Assert.AreEqual(2, res.Count);
+
+        }
+
+        [TestMethod()]
+        public void GetSentTest()
+        {
+            string resJson = api.GetEnviados("oiwfjpoi@eii.es");
+            List<Secreto> res = JsonConvert.DeserializeObject<List<Secreto>>(resJson);
+            Assert.AreEqual(0, res.Count);
+
+            resJson = api.GetEnviados("pepe@ubusecret.es");
+            res = JsonConvert.DeserializeObject<List<Secreto>>(resJson);
+            Assert.AreEqual(2, res.Count);
+
+            resJson = api.GetEnviados("paco@ubusecret.es");
+            res = JsonConvert.DeserializeObject<List<Secreto>>(resJson);
+            Assert.AreEqual(0, res.Count);
+
+        }
+
 
 
     }
